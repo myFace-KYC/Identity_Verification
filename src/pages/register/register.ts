@@ -22,6 +22,7 @@ export class RegisterPage {
   constructor(private afAuth: AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams) {
   }
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
@@ -30,8 +31,8 @@ export class RegisterPage {
   // async call
   async register(user: User){
     try {
-    const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email,user.password);
-    console.log(result)
+      const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email,user.password);
+      console.log(result)
     }
     catch (e){
       console.error(e);
