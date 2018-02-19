@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from "angularfire2/auth";
 
 @Component({
@@ -8,13 +8,27 @@ import { AngularFireAuth } from "angularfire2/auth";
 })
 export class HomePage {
 
-  constructor(private afAuth: AngularFireAuth,
+  constructor(private afAuth: AngularFireAuth, private toast:ToastController,
     public navCtrl: NavController) {
-
   }
 
-  ionViewWillLoad(){
-    this.afAuth.authState.subscribe(data => console.log(data))
-  }
+  ionViewWillLoad() {
 
+    this.afAuth.authState.subscribe(data => {
+      if (data.email && data.uid){
+        this.toast.create({
+          message:`Welcome to KYC, ${data.email}`,
+          duration : 3000
+        }).present();
+      }
+
+      else{
+        this.toast.create({
+          message:"Could not find authentication details",
+          duration:3000
+        }).present();
+      }
+    })
+  }
+  
 }
