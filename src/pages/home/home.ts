@@ -14,6 +14,7 @@ export class HomePage {
 
   ionViewWillLoad() {
 
+    // Ensuring that the user is authorized to be on the homepage
     this.afAuth.authState.subscribe(data => {
       if (data.email && data.uid){
         this.toast.create({
