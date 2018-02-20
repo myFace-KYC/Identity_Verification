@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { RegisterPage } from '../register/register';
 import { AngularFireAuth } from "angularfire2/auth";
@@ -22,7 +22,7 @@ export class LoginPage {
 
 	user = {} as User;
 
-  constructor(private afAuth: AngularFireAuth,
+  constructor(private afAuth: AngularFireAuth, private toast:ToastController,
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -39,6 +39,12 @@ export class LoginPage {
     }
     catch(e){
       console.error(e);
+      let toast = this.toast.create({
+        message: 'Login Failed! Invalid Email or Password',
+        duration: 3000,
+        cssClass: 'error'
+      });
+      toast.present();
     }
   }
 

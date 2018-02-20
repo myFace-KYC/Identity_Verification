@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { AngularFireAuth } from "angularfire2/auth";
 
@@ -19,10 +19,10 @@ export class RegisterPage {
 
   user = {} as User;
   
-  constructor(private afAuth: AngularFireAuth,
+  constructor(private afAuth: AngularFireAuth, private toast:ToastController,
     public navCtrl: NavController, public navParams: NavParams) {
   }
-  
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
@@ -36,6 +36,12 @@ export class RegisterPage {
     }
     catch (e){
       console.error(e);
+      let toast = this.toast.create({
+        message: 'Registration failed, password must be at least 6 characters long.',
+        duration: 3000,
+        cssClass: 'error'
+      });
+      toast.present();
     }
 
   }
