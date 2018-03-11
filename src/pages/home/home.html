@@ -9,4 +9,11 @@
   <p>
     You are now authorized to transact.
   </p>
+
+  <ion-input type="text" [(ngModel)]="newItem" placeholder="New shopping item"></ion-input>
+  <button ion-button (click)="addItem()">Add</button>
+  <button ion-button (click)="checkStatus()">Check</button>
+  <button ion-button (click)="goToForm()">Form</button>
+
+
 </ion-content>

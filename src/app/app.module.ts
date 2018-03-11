@@ -8,38 +8,49 @@ import { MyApp } from './app.component';
 import { AngularFireModule } from "angularfire2"
 import { FIREBASE_CONFIG } from  "./app.firebase.config"
 import { AngularFireAuthModule, AngularFireAuth } from "angularfire2/auth";
+import { AngularFireDatabaseModule, AngularFireDatabase } from "angularfire2/database";
+import { HttpModule } from "@angular/http";
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { HomePage } from '../pages/home/home';
+import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
+import { KycFormPage } from '../pages/kyc-form/kyc-form';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
     RegisterPage,
-    HomePage
+    HomePage,
+    KycFormPage
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireAuthModule
+    AngularFireModule.initializeApp(FIREBASE_CONFIG)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     LoginPage,
     RegisterPage,
-    HomePage
+    HomePage,
+    KycFormPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AngularFireAuth,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    AngularFireDatabase,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FirebaseServiceProvider
   ]
 })
 export class AppModule {}

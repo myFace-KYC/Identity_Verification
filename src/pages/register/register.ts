@@ -33,6 +33,12 @@ export class RegisterPage {
     try {
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email,user.password);
       console.log(result)
+      let toast = this.toast.create({
+        message: 'Successfully Registered',
+        duration: 3000,
+        
+      });
+      toast.present();
     }
     catch (e){
       console.error(e);
