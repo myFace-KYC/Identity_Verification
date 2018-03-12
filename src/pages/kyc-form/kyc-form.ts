@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { kycForm } from '../../models/kycForm';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
+import { KycSelfiePage } from '../kyc-selfie/kyc-selfie';
 
 
 @IonicPage()
@@ -18,6 +19,8 @@ export class KycFormPage {
 
   submitForm(data){
     this.fbProvider.sendForm(data);
+    const userId = this.fbProvider.getUserId();
+    this.navCtrl.push(KycSelfiePage,{ param1 : userId})
   }
 
 

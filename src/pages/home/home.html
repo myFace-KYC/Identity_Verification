@@ -5,15 +5,16 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to the KYC application!</h2>
-  <p>
-    You are now authorized to transact.
-  </p>
+  <h1>Welcome to the KYC application!</h1>
 
-  <ion-input type="text" [(ngModel)]="newItem" placeholder="New shopping item"></ion-input>
-  <button ion-button (click)="addItem()">Add</button>
-  <button ion-button (click)="checkStatus()">Check</button>
-  <button ion-button (click)="goToForm()">Form</button>
-
+  <div [ngSwitch]="userStatus">
+    <h3 *ngSwitchCase= "'true'"> Your Identity is verified </h3>
+    <div *ngSwitchCase= "'false'">
+      <h3 > Your Identity is not verified,please proceed with verification</h3>
+      <button ion-button (click)="goToForm()">Verify Me</button>
+    </div>
+    
+    <h3  *ngSwitchCase= "'processing'"> Your KYC application is being processed</h3>
+  </div>
 
 </ion-content>

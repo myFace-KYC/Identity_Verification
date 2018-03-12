@@ -1,0 +1,10 @@
+{
+  "cordova-plugin-camera": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-camera@4.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
+}

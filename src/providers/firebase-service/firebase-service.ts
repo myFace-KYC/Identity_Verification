@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
+import { STRING_TYPE } from '@angular/compiler/src/output/output_ast';
+import { isString } from 'ionic-angular/util/util';
 /*
   Generated class for the FirebaseServiceProvider provider.
 
@@ -29,21 +31,19 @@ export class FirebaseServiceProvider {
     this.afd.list('/users/'+this.userId).push(data);
   }
 
-  checkStatus(){
-    // return this.afd.database.ref('/users/'+this.userId+'/state');
-    this.itemRef = this.afd.object('/users/'+this.userId+'/state');
-    this.item = this.itemRef.valueChanges();
+  checkStatus(user_id){
+    console.log("Checking Status");
+    console.log('/users/'+this.userId+'/state');
+    this.itemRef = this.afd.object('/users/'+user_id+'/state');
     this.itemRef.snapshotChanges().subscribe(action => {
       status = action.payload.val();
+      console.log(status);
     });
     return status;
-
-    
   }
 
-  removeItem(id){
-    this.afd.list('/shoppingItems/').remove(id);
-
+  getUserId(){
+    return this.userId;
   }
 
 

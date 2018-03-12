@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { Camera } from '@ionic-native/camera'
 
 
 // Firebase Imports
@@ -19,6 +20,7 @@ import { RegisterPage } from '../pages/register/register';
 import { HomePage } from '../pages/home/home';
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 import { KycFormPage } from '../pages/kyc-form/kyc-form';
+import { KycSelfiePage } from '../pages/kyc-selfie/kyc-selfie';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { KycFormPage } from '../pages/kyc-form/kyc-form';
     LoginPage,
     RegisterPage,
     HomePage,
-    KycFormPage
+    KycFormPage,
+    KycSelfiePage
   ],
   imports: [
     BrowserModule,
@@ -42,13 +45,15 @@ import { KycFormPage } from '../pages/kyc-form/kyc-form';
     LoginPage,
     RegisterPage,
     HomePage,
-    KycFormPage
+    KycFormPage,
+    KycSelfiePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AngularFireAuth,
     AngularFireDatabase,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseServiceProvider
   ]
