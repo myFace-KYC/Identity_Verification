@@ -14,7 +14,7 @@ export class KycSelfiePage {
 
   // picdata:any;
   // picurl:any;
-  // mypicref:any;
+  mypicref:any;
   userId;any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera) {
@@ -24,24 +24,24 @@ export class KycSelfiePage {
   }
 
   async takePhoto (){
-    try {
-    const options: CameraOptions = {
-      quality: 50,
-      targetHeight:600,
-      targetWidth:600,
-      destinationType : this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+  //   try {
+  //   const options: CameraOptions = {
+  //     quality: 50,
+  //     targetHeight:600,
+  //     targetWidth:600,
+  //     destinationType : this.camera.DestinationType.DATA_URL,
+  //     encodingType: this.camera.EncodingType.JPEG,
+  //     mediaType: this.camera.MediaType.PICTURE
 
-    }
-    const result  = await this.camera.getPicture(options)
-    const image = `data:image/jpeg;base64,${result}`;
-    const pictures = firebase.storage().ref('pictures');
-    pictures.putString(image,'data_url')
-  }
-  catch(e){
-    console.error(e)
-  }
+  //   }
+  //   const result  = await this.camera.getPicture(options)
+  //   const image = `data:image/jpeg;base64,${result}`;
+  //   const pictures = firebase.storage().ref('pictures');
+  //   pictures.putString(image,'data_url')
+  // }
+  // catch(e){
+  //   console.error(e)
+  // }
 
   }
 
