@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { FirebaseStorage } from '@firebase/storage-types';
+import * as firebase from 'firebase/app'
+import 'firebase/storage'
 
-/**
- * Generated class for the KycSelfiePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -17,17 +12,18 @@ import { FirebaseStorage } from '@firebase/storage-types';
 })
 export class KycSelfiePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, private fStorage:FirebaseStorage) {
-    const userId = navParams.get('param1');
-    console.log(userId);
-  }
+  // picdata:any;
+  // picurl:any;
+  // mypicref:any;
+  userId;any;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad KycSelfiePage');
+  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera) {
+    this.userId = navParams.get('param1');
+    this.mypicref= firebase.storage().ref('/')
+    console.log(this.userId);
   }
 
   async takePhoto (){
-
     try {
     const options: CameraOptions = {
       quality: 50,
@@ -40,7 +36,7 @@ export class KycSelfiePage {
     }
     const result  = await this.camera.getPicture(options)
     const image = `data:image/jpeg;base64,${result}`;
-    const pictures = this.fStorage.ref('pictures');
+    const pictures = firebase.storage().ref('pictures');
     pictures.putString(image,'data_url')
   }
   catch(e){
@@ -48,5 +44,25 @@ export class KycSelfiePage {
   }
 
   }
+
+  // takepic(){
+  //   this.camera.getPicture({
+  //     quality: 50,
+  //     targetHeight:600,
+  //     targetWidth:600,
+  //     destinationType : this.camera.DestinationType.DATA_URL,
+  //     encodingType: this.camera.EncodingType.JPEG,
+  //     mediaType: this.camera.MediaType.PICTURE
+  //   }).then(ImageData =>{
+  //     this.picdata=ImageData;
+  //     this.upload();
+  //   })
+  // }
+
+  // upload(){
+  //   this.mypicref.child(this.userId).child('pic.png')
+  //   .putString(this.picdata,'base64',{contentType:'image/png'})
+    
+  // }
 
 }
