@@ -11,6 +11,7 @@ import { KycFormPage } from '../kyc-form/kyc-form';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
 
   // variables 
@@ -23,9 +24,8 @@ export class HomePage {
   // constructor
   constructor(private afAuth: AngularFireAuth, private toast:ToastController,
     public navCtrl: NavController, private fbs:FirebaseServiceProvider,public afd: AngularFireDatabase) {
-
-  } 
-
+  }
+ 
 
  // Check verification Status
   checkStatus2(){
@@ -68,7 +68,5 @@ export class HomePage {
     this.navCtrl.push(KycFormPage)
     
   }
-
-
   
 }

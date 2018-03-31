@@ -9,7 +9,7 @@
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('rxjs/add/observable/bindCallback'), require('rxjs/add/observable/bindNodeCallback'), require('rxjs/add/observable/defer'), require('rxjs/add/observable/forkJoin'), require('rxjs/add/observable/fromEventPattern'), require('rxjs/add/operator/multicast'), require('rxjs/Observable'), require('rxjs/scheduler/asap'), require('rxjs/Subscriber'), require('rxjs/Subscription'), require('rxjs/symbol/rxSubscriber')) :
 	typeof define === 'function' && define.amd ? define(['rxjs/add/observable/bindCallback', 'rxjs/add/observable/bindNodeCallback', 'rxjs/add/observable/defer', 'rxjs/add/observable/forkJoin', 'rxjs/add/observable/fromEventPattern', 'rxjs/add/operator/multicast', 'rxjs/Observable', 'rxjs/scheduler/asap', 'rxjs/Subscriber', 'rxjs/Subscription', 'rxjs/symbol/rxSubscriber'], factory) :
 	(factory(null,null,null,null,null,null,global.Rx,global.Rx.Scheduler,global.Rx,global.Rx,global.Rx.Symbol));
-}(this, (function (rxjs_add_observable_bindCallback,rxjs_add_observable_bindNodeCallback,rxjs_add_observable_defer,rxjs_add_observable_forkJoin,rxjs_add_observable_fromEventPattern,rxjs_add_operator_multicast,rxjs_Observable,rxjs_scheduler_asap,rxjs_Subscriber,rxjs_Subscription,rxjs_symbol_rxSubscriber) { 'use strict';
+}(this, (function (bindCallback,bindNodeCallback,defer,forkJoin,fromEventPattern,multicast,Observable,asap,Subscriber,Subscription,rxSubscriber) { 'use strict';
 
 /**
  * @license
@@ -18,14 +18,12 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-Zone.__load_patch('rxjs', function (global, Zone, api) {
+Zone.__load_patch('rxjs', function (global, Zone) {
     var symbol = Zone.__symbol__;
-    var subscribeSource = 'rxjs.subscribe';
     var nextSource = 'rxjs.Subscriber.next';
     var errorSource = 'rxjs.Subscriber.error';
     var completeSource = 'rxjs.Subscriber.complete';
-    var unsubscribeSource = 'rxjs.Subscriber.unsubscribe';
-    var teardownSource = 'rxjs.Subscriber.teardownLogic';
+    var ObjectDefineProperties = Object.defineProperties;
     var empty = {
         closed: true,
         next: function (value) { },
@@ -34,25 +32,25 @@ Zone.__load_patch('rxjs', function (global, Zone, api) {
     };
     function toSubscriber(nextOrObserver, error, complete) {
         if (nextOrObserver) {
-            if (nextOrObserver instanceof rxjs_Subscriber.Subscriber) {
+            if (nextOrObserver instanceof Subscriber.Subscriber) {
                 return nextOrObserver;
             }
-            if (nextOrObserver[rxjs_symbol_rxSubscriber.rxSubscriber]) {
-                return nextOrObserver[rxjs_symbol_rxSubscriber.rxSubscriber]();
+            if (nextOrObserver[rxSubscriber.rxSubscriber]) {
+                return nextOrObserver[rxSubscriber.rxSubscriber]();
             }
         }
         if (!nextOrObserver && !error && !complete) {
-            return new rxjs_Subscriber.Subscriber(empty);
+            return new Subscriber.Subscriber(empty);
         }
-        return new rxjs_Subscriber.Subscriber(nextOrObserver, error, complete);
+        return new Subscriber.Subscriber(nextOrObserver, error, complete);
     }
     var patchObservable = function () {
-        var ObservablePrototype = rxjs_Observable.Observable.prototype;
+        var ObservablePrototype = Observable.Observable.prototype;
         var symbolSubscribe = symbol('subscribe');
         var _symbolSubscribe = symbol('_subscribe');
         var _subscribe = ObservablePrototype[_symbolSubscribe] = ObservablePrototype._subscribe;
         var subscribe = ObservablePrototype[symbolSubscribe] = ObservablePrototype.subscribe;
-        Object.defineProperties(rxjs_Observable.Observable.prototype, {
+        ObjectDefineProperties(Observable.Observable.prototype, {
             _zone: { value: null, writable: true, configurable: true },
             _zoneSource: { value: null, writable: true, configurable: true },
             _zoneSubscribe: { value: null, writable: true, configurable: true },
@@ -72,7 +70,7 @@ Zone.__load_patch('rxjs', function (global, Zone, api) {
                     if (this._zoneSubscribe) {
                         return this._zoneSubscribe;
                     }
-                    else if (this.constructor === rxjs_Observable.Observable) {
+                    else if (this.constructor === Observable.Observable) {
                         return _subscribe;
                     }
                     var proto = Object.getPrototypeOf(this);
@@ -101,9 +99,9 @@ Zone.__load_patch('rxjs', function (global, Zone, api) {
     };
     var patchSubscription = function () {
         var unsubscribeSymbol = symbol('unsubscribe');
-        var unsubscribe = rxjs_Subscription.Subscription.prototype[unsubscribeSymbol] =
-            rxjs_Subscription.Subscription.prototype.unsubscribe;
-        Object.defineProperties(rxjs_Subscription.Subscription.prototype, {
+        var unsubscribe = Subscription.Subscription.prototype[unsubscribeSymbol] =
+            Subscription.Subscription.prototype.unsubscribe;
+        ObjectDefineProperties(Subscription.Subscription.prototype, {
             _zone: { value: null, writable: true, configurable: true },
             _zoneUnsubscribe: { value: null, writable: true, configurable: true },
             _unsubscribe: {
@@ -138,10 +136,10 @@ Zone.__load_patch('rxjs', function (global, Zone, api) {
         });
     };
     var patchSubscriber = function () {
-        var next = rxjs_Subscriber.Subscriber.prototype.next;
-        var error = rxjs_Subscriber.Subscriber.prototype.error;
-        var complete = rxjs_Subscriber.Subscriber.prototype.complete;
-        Object.defineProperty(rxjs_Subscriber.Subscriber.prototype, 'destination', {
+        var next = Subscriber.Subscriber.prototype.next;
+        var error = Subscriber.Subscriber.prototype.error;
+        var complete = Subscriber.Subscriber.prototype.complete;
+        Object.defineProperty(Subscriber.Subscriber.prototype, 'destination', {
             configurable: true,
             get: function () {
                 return this._zoneDestination;
@@ -153,7 +151,7 @@ Zone.__load_patch('rxjs', function (global, Zone, api) {
         });
         // patch Subscriber.next to make sure it run
         // into SubscriptionZone
-        rxjs_Subscriber.Subscriber.prototype.next = function () {
+        Subscriber.Subscriber.prototype.next = function () {
             var currentZone = Zone.current;
             var subscriptionZone = this._zone;
             // for performance concern, check Zone.current
@@ -165,7 +163,7 @@ Zone.__load_patch('rxjs', function (global, Zone, api) {
                 return next.apply(this, arguments);
             }
         };
-        rxjs_Subscriber.Subscriber.prototype.error = function () {
+        Subscriber.Subscriber.prototype.error = function () {
             var currentZone = Zone.current;
             var subscriptionZone = this._zone;
             // for performance concern, check Zone.current
@@ -177,7 +175,7 @@ Zone.__load_patch('rxjs', function (global, Zone, api) {
                 return error.apply(this, arguments);
             }
         };
-        rxjs_Subscriber.Subscriber.prototype.complete = function () {
+        Subscriber.Subscriber.prototype.complete = function () {
             var currentZone = Zone.current;
             var subscriptionZone = this._zone;
             // for performance concern, check Zone.current
@@ -262,7 +260,7 @@ Zone.__load_patch('rxjs', function (global, Zone, api) {
         };
     };
     var patchMulticast = function () {
-        var obj = rxjs_Observable.Observable.prototype;
+        var obj = Observable.Observable.prototype;
         var factoryName = 'multicast';
         var symbolFactory = symbol(factoryName);
         if (obj[symbolFactory]) {
@@ -305,7 +303,6 @@ Zone.__load_patch('rxjs', function (global, Zone, api) {
             return;
         }
         var scheduleSymbol = symbol('scheduleSymbol');
-        var flushSymbol = symbol('flushSymbol');
         var zoneSymbol = symbol('zone');
         if (asap$$1[scheduleSymbol]) {
             return;
@@ -328,19 +325,19 @@ Zone.__load_patch('rxjs', function (global, Zone, api) {
                     return work.apply(this, arguments);
                 }
             };
-            return schedule.apply(this, [patchedWork, delay, state]);
+            return schedule.call(this, patchedWork, delay, state);
         };
     };
     patchObservable();
     patchSubscription();
     patchSubscriber();
-    patchObservableFactoryCreator(rxjs_Observable.Observable, 'bindCallback');
-    patchObservableFactoryCreator(rxjs_Observable.Observable, 'bindNodeCallback');
-    patchObservableFactory(rxjs_Observable.Observable, 'defer');
-    patchObservableFactory(rxjs_Observable.Observable, 'forkJoin');
-    patchObservableFactoryArgs(rxjs_Observable.Observable, 'fromEventPattern');
+    patchObservableFactoryCreator(Observable.Observable, 'bindCallback');
+    patchObservableFactoryCreator(Observable.Observable, 'bindNodeCallback');
+    patchObservableFactory(Observable.Observable, 'defer');
+    patchObservableFactory(Observable.Observable, 'forkJoin');
+    patchObservableFactoryArgs(Observable.Observable, 'fromEventPattern');
     patchMulticast();
-    patchImmediate(rxjs_scheduler_asap.asap);
+    patchImmediate(asap.asap);
 });
 
 })));

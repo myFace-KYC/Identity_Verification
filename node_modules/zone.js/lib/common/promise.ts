@@ -6,6 +6,18 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePrivate) => {
+  const ObjectGetOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+  const ObjectDefineProperty = Object.defineProperty;
+
+  function readableObjectToString(obj: any) {
+    if (obj && obj.toString === Object.prototype.toString) {
+      const className = obj.constructor && obj.constructor.name;
+      return (className ? className : '') + ': ' + JSON.stringify(obj);
+    }
+
+    return obj ? obj.toString() : Object.prototype.toString.call(obj);
+  }
+
   interface UncaughtPromiseError extends Error {
     zone: AmbientZone;
     task: Task;
@@ -17,6 +29,7 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
   const _uncaughtPromiseErrors: UncaughtPromiseError[] = [];
   const symbolPromise = __symbol__('Promise');
   const symbolThen = __symbol__('then');
+  const creationTrace = '__creationTrace__';
 
   api.onUnhandledError = (e: any) => {
     if (api.showUncaughtError()) {
@@ -55,7 +68,7 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
     try {
       const handler = (Zone as any)[UNHANDLED_PROMISE_REJECTION_HANDLER_SYMBOL];
       if (handler && typeof handler === 'function') {
-        handler.apply(this, [e]);
+        handler.call(this, e);
       }
     } catch (err) {
     }
@@ -107,9 +120,7 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
   };
 
   const TYPE_ERROR = 'Promise resolved with itself';
-  const OBJECT = 'object';
-  const FUNCTION = 'function';
-  const CURRENT_TASK_SYMBOL = __symbol__('currentTask');
+  const CURRENT_TASK_TRACE_SYMBOL = __symbol__('currentTaskTrace');
 
   // Promise Resolution
   function resolvePromise(
@@ -122,7 +133,7 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
       // should only get value.then once based on promise spec.
       let then: any = null;
       try {
-        if (typeof value === OBJECT || typeof value === FUNCTION) {
+        if (typeof value === 'object' || typeof value === 'function') {
           then = value && value.then;
         }
       } catch (err) {
@@ -137,11 +148,11 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
           (value as any)[symbolState] !== UNRESOLVED) {
         clearRejectedNoCatch(<Promise<any>>value);
         resolvePromise(promise, (value as any)[symbolState], (value as any)[symbolValue]);
-      } else if (state !== REJECTED && typeof then === FUNCTION) {
+      } else if (state !== REJECTED && typeof then === 'function') {
         try {
-          then.apply(value, [
-            onceWrapper(makeResolver(promise, state)), onceWrapper(makeResolver(promise, false))
-          ]);
+          then.call(
+              value, onceWrapper(makeResolver(promise, state)),
+              onceWrapper(makeResolver(promise, false)));
         } catch (err) {
           onceWrapper(() => {
             resolvePromise(promise, false, err);
@@ -155,7 +166,15 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
         // record task information in value when error occurs, so we can
         // do some additional work such as render longStackTrace
         if (state === REJECTED && value instanceof Error) {
-          (value as any)[CURRENT_TASK_SYMBOL] = Zone.currentTask;
+          // check if longStackTraceZone is here
+          const trace = Zone.currentTask && Zone.currentTask.data &&
+              (Zone.currentTask.data as any)[creationTrace];
+          if (trace) {
+            // only keep the long stack trace into error when in longStackTraceZone
+            ObjectDefineProperty(
+                value, CURRENT_TASK_TRACE_SYMBOL,
+                {configurable: true, enumerable: false, writable: true, value: trace});
+          }
         }
 
         for (let i = 0; i < queue.length;) {
@@ -164,8 +183,9 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
         if (queue.length == 0 && state == REJECTED) {
           (promise as any)[symbolState] = REJECTED_NO_CATCH;
           try {
+            // try to print more readable error log
             throw new Error(
-                'Uncaught (in promise): ' + value +
+                'Uncaught (in promise): ' + readableObjectToString(value) +
                 (value && value.stack ? '\n' + value.stack : ''));
           } catch (err) {
             const error: UncaughtPromiseError = err;
@@ -193,8 +213,8 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
       // eventHandler
       try {
         const handler = (Zone as any)[REJECTION_HANDLED_HANDLER];
-        if (handler && typeof handler === FUNCTION) {
-          handler.apply(this, [{rejection: (promise as any)[symbolValue], promise: promise}]);
+        if (handler && typeof handler === 'function') {
+          handler.call(this, {rejection: (promise as any)[symbolValue], promise: promise});
         }
       } catch (err) {
       }
@@ -207,13 +227,13 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
     }
   }
 
-  function scheduleResolveOrReject<R, U>(
+  function scheduleResolveOrReject<R, U1, U2>(
       promise: ZoneAwarePromise<any>, zone: AmbientZone, chainPromise: ZoneAwarePromise<any>,
-      onFulfilled?: (value: R) => U, onRejected?: (error: any) => U): void {
+      onFulfilled?: (value: R) => U1, onRejected?: (error: any) => U2): void {
     clearRejectedNoCatch(promise);
     const delegate = (promise as any)[symbolState] ?
-        (typeof onFulfilled === FUNCTION) ? onFulfilled : forwardResolution :
-        (typeof onRejected === FUNCTION) ? onRejected : forwardRejection;
+        (typeof onFulfilled === 'function') ? onFulfilled : forwardResolution :
+        (typeof onRejected === 'function') ? onRejected : forwardRejection;
     zone.scheduleMicroTask(source, () => {
       try {
         resolvePromise(
@@ -243,7 +263,8 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
       let resolve: (v: any) => void;
       let reject: (v: any) => void;
       let promise: any = new this((res, rej) => {
-        [resolve, reject] = [res, rej];
+        resolve = res;
+        reject = rej;
       });
       function onResolve(value: any) {
         promise && (promise = null || resolve(value));
@@ -264,7 +285,7 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
     static all<R>(values: any): Promise<R> {
       let resolve: (v: any) => void;
       let reject: (v: any) => void;
-      let promise = new this((res, rej) => {
+      let promise = new this<R>((res, rej) => {
         resolve = res;
         reject = rej;
       });
@@ -305,10 +326,12 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
       }
     }
 
-    then<R, U>(
-        onFulfilled?: (value: R) => U | PromiseLike<U>,
-        onRejected?: (error: any) => U | PromiseLike<U>): Promise<R> {
-      const chainPromise: Promise<R> = new (this.constructor as typeof ZoneAwarePromise)(null);
+    then<TResult1 = R, TResult2 = never>(
+        onFulfilled?: ((value: R) => TResult1 | PromiseLike<TResult1>)|undefined|null,
+        onRejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>)|undefined|
+        null): Promise<TResult1|TResult2> {
+      const chainPromise: Promise<TResult1|TResult2> =
+          new (this.constructor as typeof ZoneAwarePromise)(null);
       const zone = Zone.current;
       if ((this as any)[symbolState] == UNRESOLVED) {
         (<any[]>(this as any)[symbolValue]).push(zone, chainPromise, onFulfilled, onRejected);
@@ -318,7 +341,8 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
       return chainPromise;
     }
 
-    catch<U>(onRejected?: (error: any) => U | PromiseLike<U>): Promise<R> {
+    catch<TResult = never>(onRejected?: ((reason: any) => TResult | PromiseLike<TResult>)|undefined|
+                           null): Promise<R|TResult> {
       return this.then(null, onRejected);
     }
   }
@@ -332,7 +356,7 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
   const NativePromise = global[symbolPromise] = global['Promise'];
   const ZONE_AWARE_PROMISE = Zone.__symbol__('ZoneAwarePromise');
 
-  let desc = Object.getOwnPropertyDescriptor(global, 'Promise');
+  let desc = ObjectGetOwnPropertyDescriptor(global, 'Promise');
   if (!desc || desc.configurable) {
     desc && delete desc.writable;
     desc && delete desc.value;
@@ -365,7 +389,7 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
       }
     };
 
-    Object.defineProperty(global, 'Promise', desc);
+    ObjectDefineProperty(global, 'Promise', desc);
   }
 
   global['Promise'] = ZoneAwarePromise;
@@ -378,11 +402,11 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
     // Keep a reference to the original method.
     proto[symbolThen] = originalThen;
 
-    // check Ctor.prototype.then propertyDescritor is writable or not
+    // check Ctor.prototype.then propertyDescriptor is writable or not
     // in meteor env, writable is false, we have to make it to be true.
-    const prop = Object.getOwnPropertyDescriptor(Ctor.prototype, 'then');
+    const prop = ObjectGetOwnPropertyDescriptor(Ctor.prototype, 'then');
     if (prop && prop.writable === false && prop.configurable) {
-      Object.defineProperty(Ctor.prototype, 'then', {writable: true});
+      ObjectDefineProperty(Ctor.prototype, 'then', {writable: true});
     }
 
     Ctor.prototype.then = function(onResolve: any, onReject: any) {
@@ -412,7 +436,7 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
     patchThen(NativePromise);
 
     let fetch = global['fetch'];
-    if (typeof fetch == FUNCTION) {
+    if (typeof fetch == 'function') {
       global['fetch'] = zoneify(fetch);
     }
   }

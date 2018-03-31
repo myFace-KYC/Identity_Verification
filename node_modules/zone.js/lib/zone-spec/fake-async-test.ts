@@ -23,6 +23,12 @@
     target: any;
   }
 
+  interface MacroTaskOptions {
+    source: string;
+    isPeriodic?: boolean;
+    callbackArgs?: any;
+  }
+
   class Scheduler {
     // Next scheduler id.
     public nextId: number = 0;
@@ -172,8 +178,15 @@
     pendingPeriodicTimers: number[] = [];
     pendingTimers: number[] = [];
 
-    constructor(namePrefix: string, private trackPendingRequestAnimationFrame = false) {
+    constructor(
+        namePrefix: string, private trackPendingRequestAnimationFrame = false,
+        private macroTaskOptions?: MacroTaskOptions[]) {
       this.name = 'fakeAsyncTestZone for ' + namePrefix;
+      // in case user can't access the construction of FakeAsyncTestSpec
+      // user can also define macroTaskOptions by define a global variable.
+      if (!this.macroTaskOptions) {
+        this.macroTaskOptions = global[Zone.__symbol__('FakeAsyncTestMacroTask')];
+      }
     }
 
     private _fnAndFlush(fn: Function, completers: {onSuccess?: Function, onError?: Function}):
@@ -315,16 +328,16 @@
           // should pass additional arguments to callback if have any
           // currently we know process.nextTick will have such additional
           // arguments
-          let addtionalArgs: any[];
+          let additionalArgs: any[];
           if (args) {
-            let callbackIndex = (task.data as any).callbackIndex;
+            let callbackIndex = (task.data as any).cbIdx;
             if (typeof args.length === 'number' && args.length > callbackIndex + 1) {
-              addtionalArgs = Array.prototype.slice.call(args, callbackIndex + 1);
+              additionalArgs = Array.prototype.slice.call(args, callbackIndex + 1);
             }
           }
           this._microtasks.push({
             func: task.invoke,
-            args: addtionalArgs,
+            args: additionalArgs,
             target: task.data && (task.data as any).target
           });
           break;
@@ -352,6 +365,24 @@
                   this.trackPendingRequestAnimationFrame);
               break;
             default:
+              // user can define which macroTask they want to support by passing
+              // macroTaskOptions
+              const macroTaskOption = this.findMacroTaskOption(task);
+              if (macroTaskOption) {
+                const args = task.data && (task.data as any)['args'];
+                const delay = args && args.length > 1 ? args[1] : 0;
+                let callbackArgs =
+                    macroTaskOption.callbackArgs ? macroTaskOption.callbackArgs : args;
+                if (!!macroTaskOption.isPeriodic) {
+                  // periodic macroTask, use setInterval to simulate
+                  task.data['handleId'] = this._setInterval(task.invoke, delay, callbackArgs);
+                  task.data.isPeriodic = true;
+                } else {
+                  // not periodic, use setTimeout to simulate
+                  task.data['handleId'] = this._setTimeout(task.invoke, delay, callbackArgs);
+                }
+                break;
+              }
               throw new Error('Unknown macroTask scheduled in fake async test: ' + task.source);
           }
           break;
@@ -372,8 +403,29 @@
         case 'setInterval':
           return this._clearInterval(task.data['handleId']);
         default:
+          // user can define which macroTask they want to support by passing
+          // macroTaskOptions
+          const macroTaskOption = this.findMacroTaskOption(task);
+          if (macroTaskOption) {
+            const handleId = task.data['handleId'];
+            return macroTaskOption.isPeriodic ? this._clearInterval(handleId) :
+                                                this._clearTimeout(handleId);
+          }
           return delegate.cancelTask(target, task);
       }
+    }
+
+    findMacroTaskOption(task: Task) {
+      if (!this.macroTaskOptions) {
+        return null;
+      }
+      for (let i = 0; i < this.macroTaskOptions.length; i++) {
+        const macroTaskOption = this.macroTaskOptions[i];
+        if (macroTaskOption.source === task.source) {
+          return macroTaskOption;
+        }
+      }
+      return null;
     }
 
     onHandleError(
