@@ -3,6 +3,8 @@ An Identity Verification App to be used to for KYC purposes
 
 
 ------------ TESTING PLANS ------------
+
+
 We implemented two different kind of testing:
 1. Unit Testing
 2. E2E (End-to-End) Testing
