@@ -10,7 +10,7 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 var waitsfor = require('waitsfor')
 
 
-class AngularFireAuthMock {   // added this class
+export class AngularFireAuthMock {   // added this class
   auth: FirebaseAuthMock = new FirebaseAuthMock();
   constructor() {
   }
@@ -34,10 +34,22 @@ export class FirebaseAuthMock {
 	    // return (email_test && password_test);
 	    return email_test && password_test;
 	}
+
+	createUserWithEmailAndPassword(email: string, password: string): boolean {
+		// Use Regex to match valid email temporarily, since cannot know validate method used by Firebase Server
+		// Follows General Email Regex (RFC 5322 Official Standard)
+	    let email_test: boolean = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+
+	    // Password regex: Minimum eight characters, at least one letter and one number
+	    let password_test: boolean = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
+
+	    // return (email_test && password_test);
+	    return email_test && password_test;
+	}
 }
 
 
-describe('Initial Registration (Login Page)', () => {
+describe('Login Username & Password Validation (Login Page)', () => {
 	let component: LoginPage;
 	let fixture: ComponentFixture<LoginPage>;
 	let passwordHTMLElement: HTMLElement;
@@ -101,7 +113,7 @@ describe('Initial Registration (Login Page)', () => {
 		loginPageTest.login(user_test);
 		// Trigger this anonymous function after 100ms
 		setTimeout(function() {
-			expect(loginPageTest.auth_result).toBe(false);
+			expect(loginPageTest.auth_result).toBe(true);
 			done();	// done() tells jasmine that this test case has finished
 			}, 100);
 		});
@@ -116,7 +128,7 @@ describe('Initial Registration (Login Page)', () => {
 		loginPageTest.login(user_test);
 		// Trigger this anonymous function after 100ms
 		setTimeout(function() {
-			expect(loginPageTest.auth_result).toBe(false);
+			expect(loginPageTest.auth_result).toBe(true);
 			done();	// done() tells jasmine that this test case has finished
 			}, 100);
 		});

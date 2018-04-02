@@ -19,6 +19,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class RegisterPage {
   userId: string;
   user = {} as User;
+  auth_result : boolean;
+  unit_testing: boolean;
+
   
   constructor(private afAuth: AngularFireAuth, private toast:ToastController,
     public navCtrl: NavController, public navParams: NavParams, private db: AngularFireDatabase) {
@@ -39,6 +42,15 @@ export class RegisterPage {
   async register(user: User){
     try {
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email,user.password);
+      if (result) {
+        this.auth_result = true;
+      }
+      else {
+        this.auth_result = false;
+      }
+      if (this.unit_testing) {
+        return;
+      }
    
       // Create DB entry for kyc (separate from login and register database)
       this.createInitialDBEntry(result['uid']);
