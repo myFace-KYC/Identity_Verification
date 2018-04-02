@@ -28,7 +28,9 @@ module.exports = function(config) {
       './test-config/karma-test-shim.js': ['webpack', 'sourcemap']
     },
 
-    webpack: webpackConfig,
+    webpack: { node: { fs: 'empty', } },
+
+    // webpack: webpackConfig,
 
     webpackMiddleware: {
       stats: 'errors-only'

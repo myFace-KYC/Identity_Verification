@@ -32,7 +32,7 @@ describe('App', () => {
 
   describe('default screen', () => {
     beforeEach(() => {
-      browser.get('https://www.google.com.sg');
+      browser.get('http://localhost:8101');
     });
 
     // it('should have a title saying Login', () => {

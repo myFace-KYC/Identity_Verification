@@ -101,7 +101,7 @@ describe('Initial Registration (Login Page)', () => {
 		loginPageTest.login(user_test);
 		// Trigger this anonymous function after 100ms
 		setTimeout(function() {
-			expect(loginPageTest.auth_result).toBe(true);
+			expect(loginPageTest.auth_result).toBe(false);
 			done();	// done() tells jasmine that this test case has finished
 			}, 100);
 		});
@@ -116,7 +116,7 @@ describe('Initial Registration (Login Page)', () => {
 		loginPageTest.login(user_test);
 		// Trigger this anonymous function after 100ms
 		setTimeout(function() {
-			expect(loginPageTest.auth_result).toBe(true);
+			expect(loginPageTest.auth_result).toBe(false);
 			done();	// done() tells jasmine that this test case has finished
 			}, 100);
 		});
