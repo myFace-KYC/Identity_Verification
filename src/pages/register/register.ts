@@ -64,6 +64,7 @@ export class RegisterPage {
       // Create DB entry for kyc (separate from login and register database)
       // this.createInitialDBEntry(result['uid']);
 
+      console.log(result);
       this.registerWithServer(user,result['uid']);
 
       let alert = this.alertCtrl.create({

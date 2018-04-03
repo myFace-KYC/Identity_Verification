@@ -30,7 +30,7 @@ export class HomePage {
  // Check verification Status
   checkStatus2(){
     console.log("Checking Status");
-    this.itemRef = this.afd.object('/users/'+this.userId+'/state');
+    this.itemRef = this.afd.object('/users/'+this.userId+'/email_confirmed');
     this.itemRef.snapshotChanges().subscribe(action => {
       status = action.payload.val();
       this.userStatus = status;
@@ -40,12 +40,16 @@ export class HomePage {
 
   // When screen loads
   ionViewWillLoad() {
+    console.log("View loaded");
 
     // Ensuring that the user is authorized to be on the homepage
     this.afAuth.authState.subscribe(data => {
+      console.log("autherising");
       if (data.email && data.uid){
         this.userId = data.uid;
         this.checkStatus2();
+
+        console.log(this.userId);
         
         this.toast.create({
           message:`Welcome to KYC, ${data.email}`,
