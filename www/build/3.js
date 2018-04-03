@@ -27,7 +27,7 @@ var KycFormPageModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__kyc_form__["a" /* KycFormPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__kyc_form__["a" /* KycFormPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__kyc_form__["a" /* KycFormPage */]),
             ],
         })
     ], KycFormPageModule);

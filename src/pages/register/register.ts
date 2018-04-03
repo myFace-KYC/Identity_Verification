@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireDatabase } from 'angularfire2/database';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { RequestOptions } from '@angular/http';
+import { LoginPage } from '../login/login';
 
 
 @IonicPage()
@@ -21,7 +22,9 @@ export class RegisterPage {
   data:Observable<any>;
   
   constructor(private afAuth: AngularFireAuth, private toast:ToastController,
-    public navCtrl: NavController, public navParams: NavParams, private db: AngularFireDatabase, public http:HttpClient) {
+    public navCtrl: NavController, public navParams: NavParams, 
+    private db: AngularFireDatabase, public http:HttpClient,
+    public alertCtrl: AlertController) {
   }
 
 
@@ -47,6 +50,8 @@ export class RegisterPage {
     this.data = this.http.put(url,postData);
     this.data.subscribe(data => {
       console.log(data);
+
+      
     });
     
   }
@@ -61,12 +66,28 @@ export class RegisterPage {
 
       this.registerWithServer(user,result['uid']);
 
-      let toast = this.toast.create({
-        message: 'Successfully Registered',
-        duration: 3000,
-        
+      let alert = this.alertCtrl.create({
+        title: 'Successfully Registered!',
+        subTitle: 'Please check your email for verification link',
+        buttons: [
+          {
+            text: 'OK',
+            handler: data => {
+              // OK button sends back to the login page
+              this.navCtrl.pop();
+            }
+          }
+        ]
       });
-      toast.present();
+      alert.present();
+
+
+      // let toast = this.toast.create({
+      //   message: 'Successfully Registered! Please check your email for verification link',
+      //   duration: 3000,
+        
+      // });
+      // toast.present();
     }
     catch (e){
       console.error(e);

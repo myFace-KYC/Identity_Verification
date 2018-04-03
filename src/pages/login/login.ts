@@ -40,7 +40,7 @@ export class LoginPage {
     catch(e){
       console.error(e);
       let toast = this.toast.create({
-        message: 'Login Failed! Invalid Email or Password',
+        message: e['message'],
         duration: 3000,
         cssClass: 'error'
       });
