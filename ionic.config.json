@@ -4,5 +4,11 @@
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "proxies": [
+    {
+      "path": "/register",
+      "proxyUrl": "https://myface-server.herokuapp.com/api/v1/new-user-submit"
+    }
+  ]
 }
