@@ -69,7 +69,7 @@ export class HomePage {
 
   // navigation to form page
   goToForm(){
-    this.navCtrl.push(KycFormPage)
+    this.navCtrl.push(KycFormPage,{ param1 : this.userId})
     
   }
 

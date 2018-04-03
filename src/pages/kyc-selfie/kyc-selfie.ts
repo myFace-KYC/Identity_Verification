@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { storage, initializeApp } from 'firebase';
 import { FIREBASE_CONFIG } from "../../app/app.firebase.config";
+import { kycForm } from '../../models/kycForm';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { SubmitPage } from '../submit/submit';
 
 
 @IonicPage()
@@ -14,15 +18,25 @@ export class KycSelfiePage {
 
   selfiephoto:string;
   passportphoto:string;
-  userId;any;
+  userId : string;
+  selfie_url: string;
+  passport_url: string;
+
+  data:Observable<any>;
+
+  kyc_form = {} as kycForm;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private camera: Camera) 
+    private camera: Camera,
+    public http:HttpClient ) 
+    
   {
-    this.userId = navParams.get('param1');
+    this.kyc_form = navParams.get('param1');
+    this.userId = navParams.get('param2');
     console.log(this.userId);
+    console.log(this.kyc_form);
   }
 
   takeselfiePhoto(){
@@ -108,10 +122,33 @@ export class KycSelfiePage {
   }
 
   upload(){
-    const selfiepictures = storage().ref('selfie/'+this.userId);
-    selfiepictures.putString(this.selfiephoto,'data_url');
-    const passportpictures = storage().ref('passport/'+this.userId);
-    passportpictures.putString(this.passportphoto,'data_url');    
+    // const selfiepictures = storage().ref('selfie/'+this.userId);
+    // selfiepictures.putString(this.selfiephoto,'data_url');
+    // const passportpictures = storage().ref('passport/'+this.userId);
+    // passportpictures.putString(this.passportphoto,'data_url');    
+    this.navCtrl.push(SubmitPage,{ param1 : this.kyc_form, param2: this.userId})
+    // this.getSelfieUrl()
   }
+
+  nextPage(){
+    this.navCtrl.push(SubmitPage,{ param1 : this.kyc_form, param2: this.userId})
+  }
+
+  getSelfieUrl(){
+  
+    var storageRef = storage().ref();
+    var starsRef = storageRef.child('selfie/'+ 'userid');
+    // Get the download URL
+    starsRef.getDownloadURL().then((result) => {
+      // `url` is the download URL for 'images/stars.jpg'
+    // this.selfie_url = url;
+    console.log("Selfie",result);
+    this.selfie_url = result;
+    console.log()
+    }).catch(function(error) {
+      console.log(error)
+    });
+  }
+  
 
 }

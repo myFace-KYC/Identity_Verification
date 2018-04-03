@@ -22,6 +22,7 @@ import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-
 import { KycFormPage } from '../pages/kyc-form/kyc-form';
 import { KycSelfiePage } from '../pages/kyc-selfie/kyc-selfie';
 import { HttpClientModule } from '@angular/common/http';
+import { SubmitPage } from '../pages/submit/submit';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterPage,
     HomePage,
     KycFormPage,
-    KycSelfiePage
+    KycSelfiePage,
+    SubmitPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterPage,
     HomePage,
     KycFormPage,
-    KycSelfiePage
+    KycSelfiePage,
+    SubmitPage
   ],
   providers: [
     StatusBar,
