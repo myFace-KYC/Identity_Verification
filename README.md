@@ -14,7 +14,7 @@ In this instance, we cover local deployment and Android compiling.
 1. Install NodeJS: https://nodejs.org/en/
 2. Install Ionic cordova
 ```
-npm install -g ionic cordova
+$ npm install -g ionic cordova
 ```
 ## Deployment Method 1
 1. Download git repo
