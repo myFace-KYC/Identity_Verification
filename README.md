@@ -16,10 +16,8 @@ In this instance, we cover local deployment and Android compiling.
 ```
 npm install -g ionic cordova
 ```
-```
-npm install
-```
 That's it!
+
 ## Running the tests
 
 ### Unit Tests
@@ -49,7 +47,18 @@ Make sure to serve browser in chrome instead of safari
 ionic serve --browser "google chrome"
 Serve ionic app first before run e2e test (IMPORTANT)
 
-## Deployment
+## Deployment Method 1
+1. Download git repo
+2. In CLI, enter npm install
+```
+npm install
+```
+3. To build,
+```
+ionic cordova build android
+```
+## Deployment Method 2
+1. Install the apk file located in ../Identity_Verfication/platforms/android/app/build/outputs/apk/debug/app-debug.apk
 
 ## Features
 * User registration and secure recurrent login
