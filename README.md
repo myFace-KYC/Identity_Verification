@@ -35,6 +35,7 @@ In this instance, we cover local deployment and Android compiling.
 * Summary page before KYC submission
 * Remove ability to backtrack during KYC
 * Progress bar of KYC
+* Pretty up the interface!
 
 ## Authors
 
