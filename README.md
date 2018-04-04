@@ -7,10 +7,13 @@ Ionic is a cross-platform framework, and as such can be deployed on the web as w
 In this instance, we cover local deployment and Android compiling.
 
 ### Prerequisites
-
 * Ionic 3
 * npm
-
+### Installation
+```
+npm install
+```
+That's it!
 ## Running the tests
 
 ### Unit Tests
