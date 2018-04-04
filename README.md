@@ -46,6 +46,18 @@ We implemented two different kind of testing:
 - E2E (End-to-End) Testing
 Tutorial that we follow (Unit testing for ionic is still under development, so potential bugs may happen) https://github.com/ionic-team/ionic-unit-testing-example#mocking-classes-for-ionic https://leifwells.github.io/2017/08/27/testing-in-ionic-configure-existing-projects-for-testing/
 
+| ﻿Testpage                             | Test Case Description                             | Test Case (Example)                                                  | Test Result |
+|--------------------------------------|---------------------------------------------------|----------------------------------------------------------------------|-------------|
+| Initial Registration (Register Page) | Uncorrected Email Address Format                  | Email: ohmygod@GG Password: test123456                               | Pass        |
+| Initial Registration (Register Page) | Invalid Email Address                             | Email: hahaha Password: test123456                                   | Fail        |
+| Initial Registration (Register Page) | Password too short                                | Email: guanlun_zhao@mymail.sutd.edu.sg Password: 666                 | Fail        |
+| MyApp                                | Root test: To make sure                           | assert existence of server / page                                    |             |
+| Login                                | Login Username & Password Validation (Login Page) | Email: ohmygod@GG Password: test123456                               | Fail        |
+| Login                                | Invalid Email Address                             | Email: hahaha Password: test123456                                   | Fail        |
+| Login                                | Password too short                                | Email: guanlun_zhao@mymail.sutd.edu.sg Password: 666                 | Fail        |
+| Login                                | Correct Email Address                             | Email: guanlun_zhao@mymail.sutd.edu.sg Password: This_is_password666 | Pass        |
+| E2E                                  | Simulate user's using process (Selenium)          | Whole work flow                                                      | Pass        |
+
 Languages & Frameworks: Angular, Typescript, Ionic, NodeJS
 
 Import Command
