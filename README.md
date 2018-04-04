@@ -18,6 +18,31 @@ That's it!
 
 ### Unit Tests
 
+Frameworks: karma, jasmine and protractor. 
+- **karma** is the Karma module which is our testing environment for unit testing. 
+- **jasmine** is the Jasmine module which is the unit testing framework. 
+- **protractor** is the Protractor module which is our testing environment for our end-to-end tests. 
+
+We implemented two different kind of testing:
+
+- Unit Testing (Karma + Jasmine)
+- E2E (End-to-End) Testing
+Tutorial that we follow (Unit testing for ionic is still under development, so potential bugs may happen) https://github.com/ionic-team/ionic-unit-testing-example#mocking-classes-for-ionic https://leifwells.github.io/2017/08/27/testing-in-ionic-configure-existing-projects-for-testing/
+
+Languages & Frameworks: Angular, Typescript, Ionic, NodeJS
+
+Import Command
+
+Unit Testing: npm run test (Run unit test, jasmine & karma)
+E2E Testing Run IonicTest.java
+P.S. All unit testing has file name pattern “*.spec.ts”, under each page folder, testing case is written in typescript and jasmine syntax.
+
+Hints I find useful
+
+Make sure to serve browser in chrome instead of safari
+ionic serve --browser "google chrome"
+Serve ionic app first before run e2e test (IMPORTANT)
+
 ## Deployment
 
 ## Features
