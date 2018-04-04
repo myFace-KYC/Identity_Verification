@@ -18,7 +18,7 @@ $ npm install -g ionic cordova
 ```
 ## Deployment Method 1
 1. Download git repo
-2. In CLI, enter npm install
+2. In CLI, enter npm install to update all dependencies
 ```
 $ npm install
 ```
