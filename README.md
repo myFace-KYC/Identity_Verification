@@ -28,11 +28,13 @@ In this instance, we cover local deployment and Android compiling.
 * Selfie and passport scan upload
 * Redirection to customer portal
 * Instant verification with facial recognition
-
+* Instant email updates to user for registration and KYC status
 
 ## To-do
-* 2FA on user login \[STRETCH GOAL]
-* 
+* KYC fields regex verification
+* Summary page before KYC submission
+* Remove ability to backtrack during KYC
+* Progress bar of KYC
 
 ## Authors
 
