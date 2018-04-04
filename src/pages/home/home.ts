@@ -16,6 +16,7 @@ export class HomePage {
   // variables 
   
   public userStatus = "false";
+  public kyc_status : string;
   itemRef: AngularFireObject<any>;
   item: Observable<any>;
   userId : string;
@@ -38,6 +39,17 @@ export class HomePage {
     });
   }
 
+
+  checkKYCStatus(){
+    console.log("Checking KYC Status");
+    this.itemRef = this.afd.object('/users/'+this.userId+'/kyc_status');
+    this.itemRef.snapshotChanges().subscribe(action => {
+      status = action.payload.val();
+      this.kyc_status = status;
+      console.log(status);
+    });
+  }
+
   // When screen loads
   ionViewWillLoad() {
     console.log("View loaded");
@@ -48,7 +60,7 @@ export class HomePage {
       if (data.email && data.uid){
         this.userId = data.uid;
         this.checkStatus2();
-
+        this.checkKYCStatus();
         console.log(this.userId);
         
         this.toast.create({

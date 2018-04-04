@@ -44,9 +44,9 @@ export class KycFormPage {
 
   submitFormCall(form_data){
     console.log("Posting KYC data to server")
-    // var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
+    var url = 'https://myface-server.herokuapp.com/api/v1/new-kyc-submit';
 
-    var url = window.location.origin + '/kyc-submit';
+    // var url = window.location.origin + '/kyc-submit';
     let postData = new FormData();
     console.log("userID value")
     console.log(this.userId);

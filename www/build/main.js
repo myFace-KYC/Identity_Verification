@@ -63,7 +63,108 @@ var FirebaseServiceProvider = (function () {
 
 /***/ }),
 
-/***/ 152:
+/***/ 131:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service_firebase_service__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__kyc_form_kyc_form__ = __webpack_require__(153);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var HomePage = (function () {
+    // constructor
+    function HomePage(afAuth, toast, navCtrl, fbs, afd) {
+        this.afAuth = afAuth;
+        this.toast = toast;
+        this.navCtrl = navCtrl;
+        this.fbs = fbs;
+        this.afd = afd;
+        // variables 
+        this.userStatus = "false";
+    }
+    // Check verification Status
+    HomePage.prototype.checkStatus2 = function () {
+        var _this = this;
+        console.log("Checking Status");
+        this.itemRef = this.afd.object('/users/' + this.userId + '/email_confirmed');
+        this.itemRef.snapshotChanges().subscribe(function (action) {
+            status = action.payload.val();
+            _this.userStatus = status;
+            console.log(status);
+        });
+    };
+    HomePage.prototype.checkKYCStatus = function () {
+        var _this = this;
+        console.log("Checking KYC Status");
+        this.itemRef = this.afd.object('/users/' + this.userId + '/kyc_status');
+        this.itemRef.snapshotChanges().subscribe(function (action) {
+            status = action.payload.val();
+            _this.kyc_status = status;
+            console.log(status);
+        });
+    };
+    // When screen loads
+    HomePage.prototype.ionViewWillLoad = function () {
+        var _this = this;
+        console.log("View loaded");
+        // Ensuring that the user is authorized to be on the homepage
+        this.afAuth.authState.subscribe(function (data) {
+            console.log("autherising");
+            if (data.email && data.uid) {
+                _this.userId = data.uid;
+                _this.checkStatus2();
+                _this.checkKYCStatus();
+                console.log(_this.userId);
+                _this.toast.create({
+                    message: "Welcome to KYC, " + data.email,
+                    duration: 3000
+                }).present();
+            }
+            else {
+                _this.toast.create({
+                    message: "Could not find authentication details",
+                    duration: 3000
+                }).present();
+            }
+        });
+    };
+    // navigation to form page
+    HomePage.prototype.goToForm = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__kyc_form_kyc_form__["a" /* KycFormPage */], { param1: this.userId });
+    };
+    HomePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-home',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h1 margin >Welcome to the KYC application!</h1>\n\n  <div margin [ngSwitch]="userStatus">\n    <h3 *ngSwitchCase= "\'false\'"> Your email has not been verified, please check your email and click on the provided link </h3>\n    <div *ngSwitchCase= "\'true\'">\n      <h3 > Your email has been verified you may proceed with the KYC process</h3>\n      <button ion-button (click)="goToForm()">Proceed to KYC</button>\n    </div>\n    \n    \n  </div>\n\n\n\n  <ion-card>\n    <ion-card-header>\n        <div margin [ngSwitch]="kyc_status">\n\n            <h1 style="color:red"  *ngSwitchCase= "\'REJECTED\'"> Your KYC has been rejected </h1>\n            <div *ngSwitchCase= "\'APPROVED\'">\n              <h3 style="color:green" > Your KYC has been approved!</h3>\n            </div>\n            <h3 style="color:orange" *ngSwitchCase= "\'PENDING\'"> Your KYC is been processed </h3>\n          </div>\n    </ion-card-header>\n    <ion-card-content>\n\n       \n        \n    </ion-card-content>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/home/home.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */], __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]])
+    ], HomePage);
+    return HomePage;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 153:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73,7 +174,7 @@ var FirebaseServiceProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service_firebase_service__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__kyc_selfie_kyc_selfie__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__kyc_selfie_kyc_selfie__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(66);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -109,8 +210,8 @@ var KycFormPage = (function () {
     };
     KycFormPage.prototype.submitFormCall = function (form_data) {
         console.log("Posting KYC data to server");
-        // var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
-        var url = window.location.origin + '/kyc-submit';
+        var url = 'https://myface-server.herokuapp.com/api/v1/new-kyc-submit';
+        // var url = window.location.origin + '/kyc-submit';
         var postData = new FormData();
         console.log("userID value");
         console.log(this.userId);
@@ -150,18 +251,18 @@ var KycFormPage = (function () {
 
 /***/ }),
 
-/***/ 153:
+/***/ 154:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KycSelfiePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__submit_submit__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__submit_submit__ = __webpack_require__(155);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -268,10 +369,10 @@ var KycSelfiePage = (function () {
         });
     };
     KycSelfiePage.prototype.upload = function () {
-        // const selfiepictures = storage().ref('selfie/'+this.userId);
-        // selfiepictures.putString(this.selfiephoto,'data_url');
-        // const passportpictures = storage().ref('passport/'+this.userId);
-        // passportpictures.putString(this.passportphoto,'data_url');    
+        var selfiepictures = Object(__WEBPACK_IMPORTED_MODULE_3_firebase__["storage"])().ref('selfie/' + this.userId);
+        selfiepictures.putString(this.selfiephoto, 'data_url');
+        var passportpictures = Object(__WEBPACK_IMPORTED_MODULE_3_firebase__["storage"])().ref('passport/' + this.userId);
+        passportpictures.putString(this.passportphoto, 'data_url');
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__submit_submit__["a" /* SubmitPage */], { param1: this.kyc_form, param2: this.userId });
         // this.getSelfieUrl()
     };
@@ -307,7 +408,7 @@ var KycSelfiePage = (function () {
 
 /***/ }),
 
-/***/ 154:
+/***/ 155:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -317,6 +418,7 @@ var KycSelfiePage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(131);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -330,6 +432,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the SubmitPage page.
  *
@@ -337,10 +440,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var SubmitPage = (function () {
-    function SubmitPage(navCtrl, navParams, http) {
+    function SubmitPage(navCtrl, navParams, http, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.http = http;
+        this.alertCtrl = alertCtrl;
         this.kyc_form = {};
         this.kyc_form = navParams.get('param1');
         this.userId = navParams.get('param2');
@@ -376,9 +480,10 @@ var SubmitPage = (function () {
         });
     };
     SubmitPage.prototype.submitFormCall = function () {
+        var _this = this;
         console.log("Posting KYC data to server");
-        // var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
-        var url = window.location.origin + '/kyc-submit';
+        var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
+        // var url = window.location.origin + '/kyc-submit';
         var postData = new FormData();
         console.log("uid", this.userId);
         console.log("Selfie", this.selfie_url);
@@ -393,32 +498,46 @@ var SubmitPage = (function () {
         this.data = this.http.put(url, postData);
         this.data.subscribe(function (data) {
             console.log(data);
+            var alert = _this.alertCtrl.create({
+                title: 'Upload Success!',
+                subTitle: 'Your KYC Application Is Being Processed',
+                buttons: [
+                    {
+                        text: 'Return Home',
+                        handler: function (data) {
+                            // Change this to return home 
+                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */]);
+                        }
+                    }
+                ]
+            });
+            alert.present();
         });
     };
     SubmitPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-submit',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/submit/submit.html"*/'<!--\n  Generated template for the SubmitPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>submit</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <div padding >\n        <button ion-button (click)="submitFormCall()">Submit</button>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/submit/submit.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
     ], SubmitPage);
     return SubmitPage;
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=submit.js.map
 
 /***/ }),
 
-/***/ 155:
+/***/ 156:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register_register__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register_register__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(131);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -531,7 +650,7 @@ var LoginPage = (function () {
 
 /***/ }),
 
-/***/ 156:
+/***/ 157:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -611,9 +730,8 @@ var RegisterPage = (function () {
     // Registers new user with server 
     RegisterPage.prototype.registerWithServer = function (user, user_id) {
         console.log("Register call is beginning");
-        // var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
-        var url = window.location.origin + '/register';
-        ;
+        var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
+        // var url = window.location.origin + '/register';;
         var postData = new FormData();
         postData.append('email', user.email);
         postData.append('uid', user_id);
@@ -626,7 +744,7 @@ var RegisterPage = (function () {
     RegisterPage.prototype.register = function (user) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var result, alert_1, e_1, toast;
+            var result, alert, e_1, toast;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -638,7 +756,7 @@ var RegisterPage = (function () {
                         // this.createInitialDBEntry(result['uid']);
                         console.log(result);
                         this.registerWithServer(user, result['uid']);
-                        alert_1 = this.alertCtrl.create({
+                        alert = this.alertCtrl.create({
                             title: 'Successfully Registered!',
                             subTitle: 'Please check your email for verification link',
                             buttons: [
@@ -651,7 +769,7 @@ var RegisterPage = (function () {
                                 }
                             ]
                         });
-                        alert_1.present();
+                        alert.present();
                         return [3 /*break*/, 3];
                     case 2:
                         e_1 = _a.sent();
@@ -672,19 +790,17 @@ var RegisterPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-register',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/register/register.html"*/'<!--\n  Generated template for the RegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Register</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-item>\n		<ion-label floating>Email Address</ion-label>\n		<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n	</ion-item>\n\n	<ion-item>\n		<ion-label floating>Password</ion-label>\n		<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n	</ion-item>\n\n	<div padding >\n		<button ion-button (click)=\'register(user)\'>Submit</button>\n	</div>\n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/register/register.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */], __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _g || Object])
     ], RegisterPage);
     return RegisterPage;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=register.js.map
 
 /***/ }),
 
-/***/ 169:
+/***/ 170:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -697,11 +813,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 169;
+webpackEmptyAsyncContext.id = 170;
 
 /***/ }),
 
-/***/ 211:
+/***/ 212:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -710,19 +826,19 @@ var map = {
 		4
 	],
 	"../pages/kyc-selfie/kyc-selfie.module": [
-		507,
+		510,
 		3
 	],
 	"../pages/login/login.module": [
-		508,
+		507,
 		2
 	],
 	"../pages/register/register.module": [
-		509,
+		508,
 		1
 	],
 	"../pages/submit/submit.module": [
-		510,
+		509,
 		0
 	]
 };
@@ -737,98 +853,8 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 211;
+webpackAsyncContext.id = 212;
 module.exports = webpackAsyncContext;
-
-/***/ }),
-
-/***/ 275:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service_firebase_service__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__kyc_form_kyc_form__ = __webpack_require__(152);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var HomePage = (function () {
-    // constructor
-    function HomePage(afAuth, toast, navCtrl, fbs, afd) {
-        this.afAuth = afAuth;
-        this.toast = toast;
-        this.navCtrl = navCtrl;
-        this.fbs = fbs;
-        this.afd = afd;
-        // variables 
-        this.userStatus = "false";
-    }
-    // Check verification Status
-    HomePage.prototype.checkStatus2 = function () {
-        var _this = this;
-        console.log("Checking Status");
-        this.itemRef = this.afd.object('/users/' + this.userId + '/email_confirmed');
-        this.itemRef.snapshotChanges().subscribe(function (action) {
-            status = action.payload.val();
-            _this.userStatus = status;
-            console.log(status);
-        });
-    };
-    // When screen loads
-    HomePage.prototype.ionViewWillLoad = function () {
-        var _this = this;
-        console.log("View loaded");
-        // Ensuring that the user is authorized to be on the homepage
-        this.afAuth.authState.subscribe(function (data) {
-            console.log("autherising");
-            if (data.email && data.uid) {
-                _this.userId = data.uid;
-                _this.checkStatus2();
-                console.log(_this.userId);
-                _this.toast.create({
-                    message: "Welcome to KYC, " + data.email,
-                    duration: 3000
-                }).present();
-            }
-            else {
-                _this.toast.create({
-                    message: "Could not find authentication details",
-                    duration: 3000
-                }).present();
-            }
-        });
-    };
-    // navigation to form page
-    HomePage.prototype.goToForm = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__kyc_form_kyc_form__["a" /* KycFormPage */], { param1: this.userId });
-    };
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h1>Welcome to the KYC application!</h1>\n\n  <div [ngSwitch]="userStatus">\n    <h3 *ngSwitchCase= "\'true\'"> Your Identity is verified </h3>\n    <div *ngSwitchCase= "\'false\'">\n      <h3 > Your Identity is not verified,please proceed with verification</h3>\n      <button ion-button (click)="goToForm()">Verify Me</button>\n    </div>\n    \n    <h3  *ngSwitchCase= "\'processing\'"> Your KYC application is being processed</h3>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/home/home.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */], __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]])
-    ], HomePage);
-    return HomePage;
-}());
-
-//# sourceMappingURL=home.js.map
 
 /***/ }),
 
@@ -855,7 +881,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(503);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_camera__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_camera__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_firebase_config__ = __webpack_require__(504);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(65);
@@ -863,14 +889,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(505);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__ = __webpack_require__(315);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__ = __webpack_require__(316);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_login_login__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_register_register__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_home_home__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_login_login__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_register_register__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_home_home__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_firebase_service_firebase_service__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_kyc_form_kyc_form__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_kyc_selfie_kyc_selfie__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_kyc_form_kyc_form__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_kyc_selfie_kyc_selfie__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__angular_common_http__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_submit_submit__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_submit_submit__ = __webpack_require__(155);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -921,10 +947,10 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/kyc-form/kyc-form.module#KycFormPageModule', name: 'KycFormPage', segment: 'kyc-form', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/kyc-selfie/kyc-selfie.module#KycSelfiePageModule', name: 'KycSelfiePage', segment: 'kyc-selfie', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/submit/submit.module#SubmitPageModule', name: 'SubmitPage', segment: 'submit', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/submit/submit.module#SubmitPageModule', name: 'SubmitPage', segment: 'submit', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/kyc-selfie/kyc-selfie.module#KycSelfiePageModule', name: 'KycSelfiePage', segment: 'kyc-selfie', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_5_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_6__app_firebase_config__["a" /* FIREBASE_CONFIG */])
@@ -967,7 +993,7 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(315);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(316);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(156);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);

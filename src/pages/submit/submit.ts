@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { storage, initializeApp } from 'firebase';
 import { FIREBASE_CONFIG } from "../../app/app.firebase.config";
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { kycForm } from '../../models/kycForm';
+import { HomePage } from '../home/home';
 /**
  * Generated class for the SubmitPage page.
  *
@@ -28,7 +29,8 @@ export class SubmitPage {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public http:HttpClient) {
+    public http:HttpClient,
+    public alertCtrl: AlertController) {
 
       this.kyc_form = navParams.get('param1');
       this.userId = navParams.get('param2');
@@ -72,9 +74,9 @@ export class SubmitPage {
 
   submitFormCall(){
     console.log("Posting KYC data to server")
-    // var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
+    var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
 
-    var url = window.location.origin + '/kyc-submit';
+    // var url = window.location.origin + '/kyc-submit';
     let postData = new FormData();
 
     console.log("uid",this.userId)
@@ -91,6 +93,21 @@ export class SubmitPage {
     this.data = this.http.put(url,postData);
     this.data.subscribe(data => {
       console.log(data);
+
+      let alert = this.alertCtrl.create({
+        title: 'Upload Success!',
+        subTitle: 'Your KYC Application Is Being Processed',
+        buttons: [
+          {
+            text: 'Return Home',
+            handler: data => {
+              // Change this to return home 
+              this.navCtrl.push(HomePage)
+            }
+          }
+        ]
+      });
+      alert.present();
 
       
     });

@@ -5,16 +5,36 @@
 </ion-header>
 
 <ion-content padding>
-  <h1>Welcome to the KYC application!</h1>
+  <h1 margin >Welcome to the KYC application!</h1>
 
-  <div [ngSwitch]="userStatus">
-    <h3 *ngSwitchCase= "'true'"> Your Identity is verified </h3>
-    <div *ngSwitchCase= "'false'">
-      <h3 > Your Identity is not verified,please proceed with verification</h3>
-      <button ion-button (click)="goToForm()">Verify Me</button>
+  <div margin [ngSwitch]="userStatus">
+    <h3 *ngSwitchCase= "'false'"> Your email has not been verified, please check your email and click on the provided link </h3>
+    <div *ngSwitchCase= "'true'">
+      <h3 > Your email has been verified you may proceed with the KYC process</h3>
+      <button ion-button (click)="goToForm()">Proceed to KYC</button>
     </div>
     
-    <h3  *ngSwitchCase= "'processing'"> Your KYC application is being processed</h3>
+    
   </div>
+
+
+
+  <ion-card>
+    <ion-card-header>
+        <div margin [ngSwitch]="kyc_status">
+
+            <h1 style="color:red"  *ngSwitchCase= "'REJECTED'"> Your KYC has been rejected </h1>
+            <div *ngSwitchCase= "'APPROVED'">
+              <h3 style="color:green" > Your KYC has been approved!</h3>
+            </div>
+            <h3 style="color:orange" *ngSwitchCase= "'PENDING'"> Your KYC is been processed </h3>
+          </div>
+    </ion-card-header>
+    <ion-card-content>
+
+       
+        
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

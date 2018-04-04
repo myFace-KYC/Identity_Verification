@@ -41,9 +41,9 @@ export class RegisterPage {
   // Registers new user with server 
   registerWithServer(user: User,user_id){
     console.log("Register call is beginning")
-    // var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
+    var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
 
-    var url = window.location.origin + '/register';;
+    // var url = window.location.origin + '/register';;
     let postData = new FormData();
     postData.append('email',user.email)
     postData.append('uid',user_id)

@@ -122,10 +122,10 @@ export class KycSelfiePage {
   }
 
   upload(){
-    // const selfiepictures = storage().ref('selfie/'+this.userId);
-    // selfiepictures.putString(this.selfiephoto,'data_url');
-    // const passportpictures = storage().ref('passport/'+this.userId);
-    // passportpictures.putString(this.passportphoto,'data_url');    
+    const selfiepictures = storage().ref('selfie/'+this.userId);
+    selfiepictures.putString(this.selfiephoto,'data_url');
+    const passportpictures = storage().ref('passport/'+this.userId);
+    passportpictures.putString(this.passportphoto,'data_url');    
     this.navCtrl.push(SubmitPage,{ param1 : this.kyc_form, param2: this.userId})
     // this.getSelfieUrl()
   }
