@@ -8,12 +8,8 @@ In this instance, we cover local deployment and Android compiling.
 
 ### Prerequisites
 
-* ???
-* ???
-
-### Installing
-
-
+* Ionic 3
+* npm
 
 ## Running the tests
 
@@ -47,4 +43,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-*
+* https://ionicframework.com/docs/intro/tutorial/
+* http://ccoenraets.github.io/ionic-tutorial/
+* https://www.joshmorony.com/building-a-crud-ionic-2-application-with-firebase-angularfire/
+* https://firebase.google.com/docs/auth/
