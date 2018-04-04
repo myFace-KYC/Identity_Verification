@@ -7,9 +7,15 @@ Ionic is a cross-platform framework, and as such can be deployed on the web as w
 In this instance, we cover local deployment and Android compiling.
 
 ### Prerequisites
+* NodeJS
 * Ionic 3
 * npm
 ### Installation
+1. Install NodeJS: https://nodejs.org/en/
+2. Install Ionic cordova
+```
+npm install -g ionic cordova
+```
 ```
 npm install
 ```
