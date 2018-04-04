@@ -82,7 +82,8 @@ Serve ionic app first before run e2e test (IMPORTANT)
 * Instant email updates to user for registration and KYC status
 
 ## To-do
-* KYC fields regex verification
+* KYC-Form fields regex verification
+* Firebase UploadTaskSnapshot to return img download URL after upload, to be passsed into python server
 * Summary page before KYC submission
 * Remove ability to backtrack during KYC
 * Progress bar of KYC
