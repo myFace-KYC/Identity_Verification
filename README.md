@@ -16,17 +16,17 @@ In this instance, we cover local deployment and Android compiling.
 ```
 $ npm install -g ionic cordova
 ```
-## Running App - Method 1
+## Building from source
 1. Download git repo
 2. In CLI, enter npm install to update all dependencies
 ```
 $ npm install
 ```
-3. To build,
+3. To get the apk file
 ```
 $ ionic cordova build android
 ```
-## Running App - Method 2
+## Running Demo App
 1. Install the apk file located in ../Identity_Verfication/platforms/android/app/build/outputs/apk/debug/app-debug.apk
 
 That's it!
