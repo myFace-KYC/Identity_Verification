@@ -4,10 +4,30 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h1 margin >Welcome to the KYC application!</h1>
+<ion-content padding class="background">
+
+  <h1 class="title-home">Welcome to myFace's KYC Verification</h1>
+
 
   <div margin [ngSwitch]="userStatus">
+    <ion-card class="Absolute-Center">
+      
+        <img *ngSwitchCase= "'false'" src="assets/imgs/email_unverified.jpg"/>
+        <img *ngSwitchCase= "'true'" src="assets/imgs/Proceed.jpg"/>
+      <ion-card-content>
+      <ion-row center>
+        <ion-col>
+          <button class="proceed-button" *ngSwitchCase= "'true'" ion-button (click)="goToForm()">Proceed to KYC</button>
+        </ion-col>
+      </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
+
+
+
+  <!-- <div margin [ngSwitch]="userStatus">
     <h3 *ngSwitchCase= "'false'"> Your email has not been verified, please check your email and click on the provided link </h3>
     <div *ngSwitchCase= "'true'">
       <h3 > Your email has been verified you may proceed with the KYC process</h3>
@@ -15,26 +35,14 @@
     </div>
     
     
-  </div>
+  </div> -->
 
 
-
-  <ion-card>
-    <ion-card-header>
-        <div margin [ngSwitch]="kyc_status">
-
-            <h1 style="color:red"  *ngSwitchCase= "'REJECTED'"> Your KYC has been rejected </h1>
+  <!-- <div margin [ngSwitch]="kyc_status">
+            <h3 style="color:red"  *ngSwitchCase= "'REJECTED'"> Your KYC has been rejected </h3>
             <div *ngSwitchCase= "'APPROVED'">
               <h3 style="color:green" > Your KYC has been approved!</h3>
             </div>
-            <h3 style="color:orange" *ngSwitchCase= "'PENDING'"> Your KYC is been processed </h3>
-          </div>
-    </ion-card-header>
-    <ion-card-content>
-
-       
-        
-    </ion-card-content>
-  </ion-card>
-
+            <h3 style="color:orange" *ngSwitchCase= "'PENDING'"> Your KYC is been processed </h3>    
+  </div> -->
 </ion-content>

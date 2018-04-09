@@ -81,7 +81,9 @@ export class HomePage {
 
   // navigation to form page
   goToForm(){
+    console.log("The user ID being passed:  ",this.userId);
     this.navCtrl.push(KycFormPage,{ param1 : this.userId})
+    
     
   }
 

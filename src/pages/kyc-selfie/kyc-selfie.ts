@@ -126,6 +126,7 @@ export class KycSelfiePage {
     selfiepictures.putString(this.selfiephoto,'data_url');
     const passportpictures = storage().ref('passport/'+this.userId);
     passportpictures.putString(this.passportphoto,'data_url');    
+    console.log("The user ID being passed:  ",this.userId)
     this.navCtrl.push(SubmitPage,{ param1 : this.kyc_form, param2: this.userId})
     // this.getSelfieUrl()
   }

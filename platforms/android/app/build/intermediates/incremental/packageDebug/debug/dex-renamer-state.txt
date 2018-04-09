@@ -1,4 +1,4 @@
-#Wed Apr 04 01:55:51 SGT 2018
+#Wed Apr 04 12:48:45 SGT 2018
 base.0=/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
 renamed.0=classes.dex
 file.0=/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex

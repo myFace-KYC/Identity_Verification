@@ -148,14 +148,15 @@ var HomePage = (function () {
     };
     // navigation to form page
     HomePage.prototype.goToForm = function () {
+        console.log("The user ID being passed:  ", this.userId);
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__kyc_form_kyc_form__["a" /* KycFormPage */], { param1: this.userId });
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h1 margin >Welcome to the KYC application!</h1>\n\n  <div margin [ngSwitch]="userStatus">\n    <h3 *ngSwitchCase= "\'false\'"> Your email has not been verified, please check your email and click on the provided link </h3>\n    <div *ngSwitchCase= "\'true\'">\n      <h3 > Your email has been verified you may proceed with the KYC process</h3>\n      <button ion-button (click)="goToForm()">Proceed to KYC</button>\n    </div>\n    \n    \n  </div>\n\n\n\n  <ion-card>\n    <ion-card-header>\n        <div margin [ngSwitch]="kyc_status">\n\n            <h1 style="color:red"  *ngSwitchCase= "\'REJECTED\'"> Your KYC has been rejected </h1>\n            <div *ngSwitchCase= "\'APPROVED\'">\n              <h3 style="color:green" > Your KYC has been approved!</h3>\n            </div>\n            <h3 style="color:orange" *ngSwitchCase= "\'PENDING\'"> Your KYC is been processed </h3>\n          </div>\n    </ion-card-header>\n    <ion-card-content>\n\n       \n        \n    </ion-card-content>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding class="background">\n\n  <h1 class="title-home">Welcome to myFace\'s KYC Verification</h1>\n\n\n  <div margin [ngSwitch]="userStatus">\n    <ion-card class="Absolute-Center">\n      \n        <img *ngSwitchCase= "\'false\'" src="assets/imgs/email_unverified.jpg"/>\n        <img *ngSwitchCase= "\'true\'" src="assets/imgs/Proceed.jpg"/>\n      <ion-card-content>\n      <ion-row center>\n        <ion-col>\n          <button class="proceed-button" *ngSwitchCase= "\'true\'" ion-button (click)="goToForm()">Proceed to KYC</button>\n        </ion-col>\n      </ion-row>\n      </ion-card-content>\n    </ion-card>\n  </div>\n  \n\n\n\n  <!-- <div margin [ngSwitch]="userStatus">\n    <h3 *ngSwitchCase= "\'false\'"> Your email has not been verified, please check your email and click on the provided link </h3>\n    <div *ngSwitchCase= "\'true\'">\n      <h3 > Your email has been verified you may proceed with the KYC process</h3>\n      <button ion-button (click)="goToForm()">Proceed to KYC</button>\n    </div>\n    \n    \n  </div> -->\n\n\n  <!-- <div margin [ngSwitch]="kyc_status">\n            <h3 style="color:red"  *ngSwitchCase= "\'REJECTED\'"> Your KYC has been rejected </h3>\n            <div *ngSwitchCase= "\'APPROVED\'">\n              <h3 style="color:green" > Your KYC has been approved!</h3>\n            </div>\n            <h3 style="color:orange" *ngSwitchCase= "\'PENDING\'"> Your KYC is been processed </h3>    \n  </div> -->\n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */], __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */], __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]])
     ], HomePage);
     return HomePage;
 }());
@@ -206,6 +207,7 @@ var KycFormPage = (function () {
         // this.fbProvider.sendForm(data);
         // const userId = this.fbProvider.getUserId();
         // this.submitFormCall(data);
+        console.log("The user ID being passed:  ", this.userId);
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__kyc_selfie_kyc_selfie__["a" /* KycSelfiePage */], { param1: data, param2: this.userId });
     };
     KycFormPage.prototype.submitFormCall = function (form_data) {
@@ -240,9 +242,9 @@ var KycFormPage = (function () {
     };
     KycFormPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-kyc-form',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/kyc-form/kyc-form.html"*/'<!--\n  Generated template for the KycFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Verification Form</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n<ion-content padding>\n\n  <div>\n    <h1 ion-text>\n      Please enter your details\n    </h1>\n  </div>\n\n  <ion-item>\n      <ion-label floating>First Name</ion-label>\n      <ion-input type="text" [(ngModel)]="kyc_form.first_name"></ion-input>\n  </ion-item>\n  \n  <ion-item>\n    <ion-label floating>Last Name</ion-label>\n    <ion-input type="text" [(ngModel)]="kyc_form.last_name"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating>Phone Number</ion-label>\n    <ion-input type="number" [(ngModel)]="kyc_form.phone"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating>Address</ion-label>\n    <ion-input type="text" [(ngModel)]="kyc_form.address"></ion-input>\n  </ion-item>\n  \n  <div padding >\n    <button ion-button (click)="submitForm(kyc_form)">Next Step</button>\n  </div>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/kyc-form/kyc-form.html"*/,
+            selector: 'page-kyc-form',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/kyc-form/kyc-form.html"*/'<!--\n  Generated template for the KycFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Verification Form</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n<ion-content padding class="background">\n\n  <div>\n    <h1 ion-text class="form-header">\n      Please enter your details\n    </h1>\n  </div>\n\n  <div class="kyc-form-container">\n  <ion-item>\n      <ion-label floating>First Name</ion-label>\n      <ion-input type="text" [(ngModel)]="kyc_form.first_name"></ion-input>\n  </ion-item>\n  \n  <ion-item>\n    <ion-label floating>Last Name</ion-label>\n    <ion-input type="text" [(ngModel)]="kyc_form.last_name"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating>Phone Number</ion-label>\n    <ion-input type="number" [(ngModel)]="kyc_form.phone"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating>Address</ion-label>\n    <ion-input type="text" [(ngModel)]="kyc_form.address"></ion-input>\n  </ion-item>\n  </div>\n  \n  <div padding >\n    <button full ion-button (click)="submitForm(kyc_form)">Next Step</button>\n  </div>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/kyc-form/kyc-form.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */], __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */], __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["a" /* HttpClient */]])
     ], KycFormPage);
     return KycFormPage;
 }());
@@ -373,6 +375,7 @@ var KycSelfiePage = (function () {
         selfiepictures.putString(this.selfiephoto, 'data_url');
         var passportpictures = Object(__WEBPACK_IMPORTED_MODULE_3_firebase__["storage"])().ref('passport/' + this.userId);
         passportpictures.putString(this.passportphoto, 'data_url');
+        console.log("The user ID being passed:  ", this.userId);
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__submit_submit__["a" /* SubmitPage */], { param1: this.kyc_form, param2: this.userId });
         // this.getSelfieUrl()
     };
@@ -396,12 +399,14 @@ var KycSelfiePage = (function () {
     };
     KycSelfiePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-kyc-selfie',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/kyc-selfie/kyc-selfie.html"*/'<!--\n  Generated template for the KycSelfiePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Upload Selfie</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n	<b>Selfie with passport photo</b>\n	<p align="center">\n 		<img src="{{ selfiephoto }}">\n 	</p>\n  	<ion-row>\n  		<ion-col col-6>\n			<button ion-button full (click)="takeselfiePhoto()">\n 				Take Photo\n 			</button>\n 		</ion-col>\n 		<ion-col col-6>\n 			<button ion-button full (click)="getselfiePhoto()">\n 				From Gallery\n 			</button>\n 		</ion-col>\n 	</ion-row>\n\n\n 	<b>Passport photo</b>\n	<p align="center">\n 		<img src="{{ passportphoto }}">\n 	</p>\n  	<ion-row>\n  		<ion-col col-6>\n			<button ion-button full (click)="takepassportPhoto()">\n 				Take Photo\n 			</button>\n 		</ion-col>\n 		<ion-col col-6>\n 			<button ion-button full (click)="getpassportPhoto()">\n 				From Gallery\n 			</button>\n 		</ion-col>\n 	</ion-row>\n 	\n\n 	<button ion-button full (click)="upload()">\n 		Upload\n	 </button>\n	 \n\n</ion-content>'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/kyc-selfie/kyc-selfie.html"*/,
+            selector: 'page-kyc-selfie',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/kyc-selfie/kyc-selfie.html"*/'<!--\n  Generated template for the KycSelfiePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Upload Selfie</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n		<h1 class="image-headers">Selfie with passport photo</h1>\n\n	<p align="center">\n 		<img src="{{ selfiephoto }}">\n 	</p>\n  	<ion-row>\n  		<ion-col col-6>\n			<button ion-button full (click)="takeselfiePhoto()">\n 				Take Photo\n 			</button>\n 		</ion-col>\n 		<ion-col col-6>\n 			<button ion-button full (click)="getselfiePhoto()">\n 				From Gallery\n 			</button>\n 		</ion-col>\n 	</ion-row>\n\n	\n	 <h1 class="image-headers">Passport photo</h1>\n\n	<p align="center">\n 		<img src="{{ passportphoto }}">\n 	</p>\n  	<ion-row>\n  		<ion-col col-6>\n			<button ion-button full (click)="takepassportPhoto()">\n 				Take Photo\n 			</button>\n 		</ion-col>\n 		<ion-col col-6>\n 			<button ion-button full (click)="getpassportPhoto()">\n 				From Gallery\n 			</button>\n 		</ion-col>\n 	</ion-row>\n 	\n\n 	<button ion-button full (click)="upload()">\n 		Upload\n	 </button>\n	 \n\n</ion-content>'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/kyc-selfie/kyc-selfie.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */]])
     ], KycSelfiePage);
     return KycSelfiePage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=kyc-selfie.js.map
@@ -440,14 +445,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var SubmitPage = (function () {
-    function SubmitPage(navCtrl, navParams, http, alertCtrl) {
+    function SubmitPage(navCtrl, navParams, http, alertCtrl, loadingCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.http = http;
         this.alertCtrl = alertCtrl;
+        this.loadingCtrl = loadingCtrl;
         this.kyc_form = {};
         this.kyc_form = navParams.get('param1');
         this.userId = navParams.get('param2');
+        console.log("The user ID being recieved:  ", this.userId);
     }
     SubmitPage.prototype.ionViewWillLoad = function () {
         console.log('ionViewDidLoad SubmitPage');
@@ -457,7 +464,7 @@ var SubmitPage = (function () {
     SubmitPage.prototype.getSelfieUrl = function () {
         var _this = this;
         var storageRef = Object(__WEBPACK_IMPORTED_MODULE_2_firebase__["storage"])().ref();
-        var starsRef = storageRef.child('selfie/' + 'userid');
+        var starsRef = storageRef.child('selfie/' + this.userId);
         // Get the download URL
         starsRef.getDownloadURL().then(function (result) {
             console.log("Selfie", result);
@@ -470,7 +477,7 @@ var SubmitPage = (function () {
         var _this = this;
         console.log('Entered Passport Call');
         var storageRef = Object(__WEBPACK_IMPORTED_MODULE_2_firebase__["storage"])().ref();
-        var starsRef = storageRef.child('passport/' + 'userid');
+        var starsRef = storageRef.child('passport/' + this.userId);
         // Get the download URL
         starsRef.getDownloadURL().then(function (result) {
             console.log("Passport", result);
@@ -479,15 +486,28 @@ var SubmitPage = (function () {
             // Handle any errors
         });
     };
+    SubmitPage.prototype.presentLoadingCrescent = function () {
+        var loading = this.loadingCtrl.create({
+            spinner: 'crescent',
+            content: 'Your applicaiton is being evaluated and processed on our servers',
+            duration: 3000
+        });
+        loading.present();
+    };
     SubmitPage.prototype.submitFormCall = function () {
         var _this = this;
         console.log("Posting KYC data to server");
-        var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
+        var url = 'https://myface-server.herokuapp.com/api/v1/new-kyc-submit';
         // var url = window.location.origin + '/kyc-submit';
         var postData = new FormData();
         console.log("uid", this.userId);
         console.log("Selfie", this.selfie_url);
         console.log("Passport", this.passport_url);
+        if (this.selfie_url == undefined) {
+            this.getSelfieUrl();
+            this.getPassportUrl();
+            this.presentLoadingCrescent();
+        }
         postData.append('uid', this.userId);
         postData.append('selfie_url', this.selfie_url);
         postData.append('passport_url', this.passport_url);
@@ -496,32 +516,49 @@ var SubmitPage = (function () {
         // postData.append('phone',form_data.phone)
         console.log(postData);
         this.data = this.http.put(url, postData);
+        var alert = this.alertCtrl.create({
+            title: 'Upload Success!',
+            subTitle: 'Your KYC Application Is Being Processed',
+            buttons: [
+                {
+                    text: 'Return Home',
+                    handler: function (data) {
+                        // Change this to return home 
+                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */]);
+                    }
+                }
+            ]
+        });
+        alert.present();
         this.data.subscribe(function (data) {
             console.log(data);
-            var alert = _this.alertCtrl.create({
-                title: 'Upload Success!',
-                subTitle: 'Your KYC Application Is Being Processed',
-                buttons: [
-                    {
-                        text: 'Return Home',
-                        handler: function (data) {
-                            // Change this to return home 
-                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */]);
-                        }
-                    }
-                ]
-            });
-            alert.present();
+            // let alert = this.alertCtrl.create({
+            //   title: 'Upload Success!',
+            //   subTitle: 'Your KYC Application Is Being Processed',
+            //   buttons: [
+            //     {
+            //       text: 'Return Home',
+            //       handler: data => {
+            //         // Change this to return home 
+            //         this.navCtrl.push(HomePage)
+            //       }
+            //     }
+            //   ]
+            // });
+            // alert.present();
         });
     };
     SubmitPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-submit',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/submit/submit.html"*/'<!--\n  Generated template for the SubmitPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>submit</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <div padding >\n        <button ion-button (click)="submitFormCall()">Submit</button>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/submit/submit.html"*/,
+            selector: 'page-submit',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/submit/submit.html"*/'<!--\n  Generated template for the SubmitPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>submit</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <div padding >\n        <button full ion-button (click)="submitFormCall()">Confirm KYC Submission</button>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/submit/submit.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
     ], SubmitPage);
     return SubmitPage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=submit.js.map
@@ -638,10 +675,10 @@ var LoginPage = (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/login/login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="primary" >\n    <ion-title>Login</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n	<ion-item>\n		<ion-label floating>Email Address</ion-label>\n		<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n	</ion-item>\n\n	<ion-item>\n		<ion-label floating>Password</ion-label>\n		<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n	</ion-item>\n\n	<div padding >\n		<button ion-button (click)="login(user)">Login</button>\n		<button ion-button color="light" (click)="register()">Register</button>\n	</div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/login/login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/login/login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n\n\n</ion-header>\n\n\n<ion-content padding class="background">\n\n\n\n	<ion-card class="Absolute-Center">\n		<img src="assets/imgs/SignIn.jpg"/>\n		<ion-card-content>\n		\n\n		<div class="form-container">\n			<ion-row>\n\n				<ion-item>\n					<ion-input center type="text" placeholder= "Email" [(ngModel)]="user.email"></ion-input>\n				</ion-item>\n\n			</ion-row>\n			<ion-row>\n					<ion-item>\n						<ion-input justify-center type="password" placeholder= "Password" [(ngModel)]="user.password" ></ion-input>\n					</ion-item>\n			</ion-row>\n	 \n		</div>\n			<ion-row>\n				<ion-col>\n					<button ion-button class="login-button" (click)="login(user)">Login</button>\n				</ion-col>\n				<ion-col>\n					<button ion-button class="register-button" color="light" (click)="register()">Register</button>\n				</ion-col>\n			</ion-row>\n			\n		</ion-card-content>\n	</ion-card>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/login/login.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], LoginPage);
     return LoginPage;
 }());
@@ -731,7 +768,7 @@ var RegisterPage = (function () {
     RegisterPage.prototype.registerWithServer = function (user, user_id) {
         console.log("Register call is beginning");
         var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
-        // var url = window.location.origin + '/register';;
+        // var url = window.location.origin + '/register';
         var postData = new FormData();
         postData.append('email', user.email);
         postData.append('uid', user_id);
@@ -744,7 +781,7 @@ var RegisterPage = (function () {
     RegisterPage.prototype.register = function (user) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var result, alert, e_1, toast;
+            var result, alert_1, e_1, toast;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -756,7 +793,7 @@ var RegisterPage = (function () {
                         // this.createInitialDBEntry(result['uid']);
                         console.log(result);
                         this.registerWithServer(user, result['uid']);
-                        alert = this.alertCtrl.create({
+                        alert_1 = this.alertCtrl.create({
                             title: 'Successfully Registered!',
                             subTitle: 'Please check your email for verification link',
                             buttons: [
@@ -769,7 +806,7 @@ var RegisterPage = (function () {
                                 }
                             ]
                         });
-                        alert.present();
+                        alert_1.present();
                         return [3 /*break*/, 3];
                     case 2:
                         e_1 = _a.sent();
@@ -788,12 +825,14 @@ var RegisterPage = (function () {
     };
     RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/register/register.html"*/'<!--\n  Generated template for the RegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Register</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-item>\n		<ion-label floating>Email Address</ion-label>\n		<ion-input type="text" [(ngModel)]="user.email"></ion-input>\n	</ion-item>\n\n	<ion-item>\n		<ion-label floating>Password</ion-label>\n		<ion-input type="password" [(ngModel)]="user.password"></ion-input>\n	</ion-item>\n\n	<div padding >\n		<button ion-button (click)=\'register(user)\'>Submit</button>\n	</div>\n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/register/register.html"*/,
+            selector: 'page-register',template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/register/register.html"*/'<!--\n  Generated template for the RegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Registration</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="background">\n\n\n\n		<ion-card class="Absolute-Center">\n			<img src="assets/imgs/Register.jpg"/>\n			<ion-card-content>\n			\n	\n			<div class="form-container">\n				<ion-row>\n	\n					<ion-item>\n						<ion-input center type="text" placeholder= "Email" [(ngModel)]="user.email"></ion-input>\n					</ion-item>\n	\n				</ion-row>\n				<ion-row>\n						<ion-item>\n							<ion-input justify-center type="password" placeholder= "Password" [(ngModel)]="user.password" ></ion-input>\n						</ion-item>\n				</ion-row>\n		 \n			</div>\n				<ion-row>\n					<ion-col>\n						<button ion-button class="register-button" (click)="register(user)">Submit</button>\n					</ion-col>\n				</ion-row>\n				\n			</ion-card-content>\n		</ion-card>\n	\n\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/pages/register/register.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _g || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */], __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], RegisterPage);
     return RegisterPage;
-    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=register.js.map
@@ -826,15 +865,15 @@ var map = {
 		4
 	],
 	"../pages/kyc-selfie/kyc-selfie.module": [
-		510,
+		507,
 		3
 	],
 	"../pages/login/login.module": [
-		507,
+		508,
 		2
 	],
 	"../pages/register/register.module": [
-		508,
+		510,
 		1
 	],
 	"../pages/submit/submit.module": [
@@ -947,10 +986,10 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/kyc-form/kyc-form.module#KycFormPageModule', name: 'KycFormPage', segment: 'kyc-form', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/kyc-selfie/kyc-selfie.module#KycSelfiePageModule', name: 'KycSelfiePage', segment: 'kyc-selfie', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/submit/submit.module#SubmitPageModule', name: 'SubmitPage', segment: 'submit', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/kyc-selfie/kyc-selfie.module#KycSelfiePageModule', name: 'KycSelfiePage', segment: 'kyc-selfie', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_5_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_6__app_firebase_config__["a" /* FIREBASE_CONFIG */])
@@ -1021,7 +1060,7 @@ var MyApp = (function () {
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
     return MyApp;
 }());

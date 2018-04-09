@@ -32,7 +32,8 @@ export class KycFormPage {
     // this.fbProvider.sendForm(data);
     // const userId = this.fbProvider.getUserId();
     // this.submitFormCall(data);
-    this.navCtrl.push(KycSelfiePage,{ param1 : data, param2: this.userId})
+    console.log("The user ID being passed:  ",this.userId);
+    this.navCtrl.push(KycSelfiePage,{ param1 : data, param2: this.userId});
   }
 
 

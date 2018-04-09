@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { storage, initializeApp } from 'firebase';
 import { FIREBASE_CONFIG } from "../../app/app.firebase.config";
 import { Observable } from 'rxjs/Observable';
@@ -30,10 +30,12 @@ export class SubmitPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public http:HttpClient,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController) {
 
       this.kyc_form = navParams.get('param1');
       this.userId = navParams.get('param2');
+      console.log("The user ID being recieved:  ",this.userId);
       
   }
 
@@ -45,7 +47,7 @@ export class SubmitPage {
 
   getSelfieUrl(){
     var storageRef = storage().ref();
-    var starsRef = storageRef.child('selfie/'+ 'userid');
+    var starsRef = storageRef.child('selfie/'+ this.userId);
     // Get the download URL
     starsRef.getDownloadURL().then((result) => {
 
@@ -60,7 +62,7 @@ export class SubmitPage {
   getPassportUrl(){
     console.log('Entered Passport Call');
     var storageRef = storage().ref();
-    var starsRef = storageRef.child('passport/'+ 'userid');
+    var starsRef = storageRef.child('passport/'+ this.userId);
     // Get the download URL
     starsRef.getDownloadURL().then((result) =>  {
 
@@ -72,9 +74,19 @@ export class SubmitPage {
     });
   }
 
+  presentLoadingCrescent() {
+    let loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+      content: 'Your applicaiton is being evaluated and processed on our servers',
+      duration: 3000
+    });
+
+    loading.present();
+  }
+
   submitFormCall(){
     console.log("Posting KYC data to server")
-    var url = 'https://myface-server.herokuapp.com/api/v1/new-user-submit';
+    var url = 'https://myface-server.herokuapp.com/api/v1/new-kyc-submit';
 
     // var url = window.location.origin + '/kyc-submit';
     let postData = new FormData();
@@ -82,6 +94,13 @@ export class SubmitPage {
     console.log("uid",this.userId)
     console.log("Selfie",this.selfie_url)
     console.log("Passport",this.passport_url)
+
+    if (this.selfie_url == undefined)
+    {
+      this.getSelfieUrl();
+      this.getPassportUrl();
+      this.presentLoadingCrescent()
+    }
 
     postData.append('uid' , this.userId)
     postData.append('selfie_url',this.selfie_url)
@@ -91,23 +110,37 @@ export class SubmitPage {
     // postData.append('phone',form_data.phone)
     console.log(postData);
     this.data = this.http.put(url,postData);
+    let alert = this.alertCtrl.create({
+      title: 'Upload Success!',
+      subTitle: 'Your KYC Application Is Being Processed',
+      buttons: [
+        {
+          text: 'Return Home',
+          handler: data => {
+            // Change this to return home 
+            this.navCtrl.push(HomePage)
+          }
+        }
+      ]
+    });
+    alert.present();
     this.data.subscribe(data => {
       console.log(data);
 
-      let alert = this.alertCtrl.create({
-        title: 'Upload Success!',
-        subTitle: 'Your KYC Application Is Being Processed',
-        buttons: [
-          {
-            text: 'Return Home',
-            handler: data => {
-              // Change this to return home 
-              this.navCtrl.push(HomePage)
-            }
-          }
-        ]
-      });
-      alert.present();
+      // let alert = this.alertCtrl.create({
+      //   title: 'Upload Success!',
+      //   subTitle: 'Your KYC Application Is Being Processed',
+      //   buttons: [
+      //     {
+      //       text: 'Return Home',
+      //       handler: data => {
+      //         // Change this to return home 
+      //         this.navCtrl.push(HomePage)
+      //       }
+      //     }
+      //   ]
+      // });
+      // alert.present();
 
       
     });

@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Apr 04 01:55:51 SGT 2018
+#Wed Apr 04 12:48:46 SGT 2018
 76.base=/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_
 5.base=/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/assets/debug
 42.base=/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/assets/debug

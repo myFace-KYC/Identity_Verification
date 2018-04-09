@@ -15,14 +15,15 @@
 
 
 
-<ion-content padding>
+<ion-content padding class="background">
 
   <div>
-    <h1 ion-text>
+    <h1 ion-text class="form-header">
       Please enter your details
     </h1>
   </div>
 
+  <div class="kyc-form-container">
   <ion-item>
       <ion-label floating>First Name</ion-label>
       <ion-input type="text" [(ngModel)]="kyc_form.first_name"></ion-input>
@@ -42,9 +43,10 @@
     <ion-label floating>Address</ion-label>
     <ion-input type="text" [(ngModel)]="kyc_form.address"></ion-input>
   </ion-item>
+  </div>
   
   <div padding >
-    <button ion-button (click)="submitForm(kyc_form)">Next Step</button>
+    <button full ion-button (click)="submitForm(kyc_form)">Next Step</button>
   </div>
   
 </ion-content>
