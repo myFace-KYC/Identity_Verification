@@ -17,6 +17,7 @@ export class HomePage {
   
   public userStatus = "false";
   public kyc_status : string;
+  public overall_status = "email_unconfirmed";
   itemRef: AngularFireObject<any>;
   item: Observable<any>;
   userId : string;
@@ -35,6 +36,8 @@ export class HomePage {
     this.itemRef.snapshotChanges().subscribe(action => {
       status = action.payload.val();
       this.userStatus = status;
+      this.setOverallStatus()
+      console.log("OVERALL STATUS:",this.overall_status)
       console.log(status);
     });
   }
@@ -46,8 +49,30 @@ export class HomePage {
     this.itemRef.snapshotChanges().subscribe(action => {
       status = action.payload.val();
       this.kyc_status = status;
+      this.setOverallStatus()
+      console.log("OVERALL STATUS:",this.overall_status)
       console.log(status);
     });
+  }
+
+  setOverallStatus(){
+    if (this.userStatus == "false"){
+      this.overall_status =  "email_unconfirmed";
+    }
+
+    else if (this.userStatus =="true"){
+      
+      this.overall_status =  "email_confirmed";
+      if (this.kyc_status=="APPROVED"){
+        this.overall_status =  "approved";
+      } 
+      else if(this.kyc_status=="REJECTED"){
+        this.overall_status =  "rejected";
+
+      }else if(this.kyc_status=="PENDING"){
+        this.overall_status =  "pending";
+      }
+    }
   }
 
   // When screen loads

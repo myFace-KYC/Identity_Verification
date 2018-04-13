@@ -73,9 +73,10 @@ page-register {
         width: 80%;
         height: 50px;
         border-radius: 13px;
-        font-weight: 700;
+        font-weight: 400;
         font-size: 1.1em;
-        background-color: #4CCC2D;
+        background-image: linear-gradient(149deg, #A1FEE4 0%, #27DB7B 100%);
+        box-shadow: 0 5px 6px 0 rgba(39,253,139,0.33);
         color: white;
         margin-bottom: 10px;
     }

@@ -86,9 +86,9 @@ export class SubmitPage {
 
   submitFormCall(){
     console.log("Posting KYC data to server")
-    var url = 'https://myface-server.herokuapp.com/api/v1/new-kyc-submit';
+    // var url = 'https://myface-server.herokuapp.com/api/v1/new-kyc-submit';
 
-    // var url = window.location.origin + '/kyc-submit';
+    var url = window.location.origin + '/kyc-submit';
     let postData = new FormData();
 
     console.log("uid",this.userId)
@@ -105,6 +105,12 @@ export class SubmitPage {
     postData.append('uid' , this.userId)
     postData.append('selfie_url',this.selfie_url)
     postData.append('passport_url',this.passport_url)
+
+    postData.append('firstName',this.kyc_form.firstName)
+    postData.append('lastNname',this.kyc_form.lastName)
+    postData.append('nric',this.kyc_form.nric)
+    postData.append('phone',this.kyc_form.phone)
+    postData.append('address',this.kyc_form.address)
     // postData.append('last-name',form_data.last_name)
     // postData.append('address',form_data.address)
     // postData.append('phone',form_data.phone)
@@ -118,7 +124,7 @@ export class SubmitPage {
           text: 'Return Home',
           handler: data => {
             // Change this to return home 
-            this.navCtrl.push(HomePage)
+            this.navCtrl.setRoot(HomePage)
           }
         }
       ]

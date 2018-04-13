@@ -14,7 +14,18 @@
 
 
 <ion-content padding>
-    <div padding >
-        <button full ion-button (click)="submitFormCall()">Confirm KYC Submission</button>
+<ion-grid>
+  <ion-row>
+    <ion-col text-center>
+      <img src="assets/imgs/Tick.jpg"/>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-center>
+      <div padding >
+        <button class ="submit_button" ion-button (click)="submitFormCall()">Confirm KYC Submission</button>
       </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>

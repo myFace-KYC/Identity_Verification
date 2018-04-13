@@ -25706,7 +25706,7 @@ page-home ion-input {
 
 page-home .Absolute-Center {
   width: 80%;
-  height: 57%;
+  height: 393px;
   margin: auto;
   position: absolute;
   top: 0;
@@ -25746,7 +25746,9 @@ page-home .proceed-button {
   border-radius: 13px;
   font-weight: 400;
   font-size: 1.1em;
-  background-color: #69A1F7;
+  background-image: linear-gradient(141deg, #28CFFF 0%, #2789FD 100%);
+  -webkit-box-shadow: 0 1px 6px 0 rgba(114, 213, 242, 0.56);
+  box-shadow: 0 1px 6px 0 rgba(114, 213, 242, 0.56);
   color: white;
   margin-bottom: 10px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -25766,7 +25768,7 @@ page-kyc-form .kyc-form-container {
   width: 80%;
   margin: auto;
   margin-top: 40px;
-  margin-bottom: 90px;
+  margin-bottom: 80px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 200;
 }
@@ -25774,16 +25776,21 @@ page-kyc-form .kyc-form-container {
 page-kyc-form .button {
   border-radius: 13px;
   width: 80%;
+  height: 50px;
   margin: auto;
+  background-image: linear-gradient(141deg, #28CFFF 0%, #2789FD 100%);
+  -webkit-box-shadow: 0 3px 10px 0 rgba(114, 213, 242, 0.56);
+  box-shadow: 0 3px 10px 0 rgba(114, 213, 242, 0.56);
 }
 
 page-kyc-selfie .button {
   height: 50px;
   border-radius: 13px;
-  font-weight: 700;
+  font-weight: 300;
   font-size: 1.1em;
   background-color: #69A1F7;
   color: white;
+  background-image: linear-gradient(141deg, #2789FD 0%, #2789FD 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -25954,13 +25961,40 @@ page-register .register-button {
   width: 80%;
   height: 50px;
   border-radius: 13px;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 1.1em;
-  background-color: #4CCC2D;
+  background-image: linear-gradient(149deg, #A1FEE4 0%, #27DB7B 100%);
+  -webkit-box-shadow: 0 5px 6px 0 rgba(39, 253, 139, 0.33);
+  box-shadow: 0 5px 6px 0 rgba(39, 253, 139, 0.33);
   color: white;
   margin-bottom: 10px;
 }
 
 .error > div {
   background-color: #E84B3A !important;
+}
+
+page-submit img {
+  max-width: 70% !important;
+  margin-top: 25%;
+  margin-bottom: 10%;
+}
+
+page-submit .submit_button {
+  width: 85%;
+  height: 65px;
+  border-radius: 13px;
+  font-size: 1.2em;
+  background-color: #4CCC2D;
+  color: white;
+  margin-bottom: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 600;
+  /* Rectangle 4 Copy: */
+  /* Rectangle 4 Copy 2: */
+  /* Rectangle 4 Copy 2: */
+  /* Rectangle 4 Copy 2: */
+  background-image: linear-gradient(149deg, #A1FEE4 0%, #27DB7B 100%);
+  -webkit-box-shadow: 0 10px 20px 0 rgba(39, 253, 139, 0.33);
+  box-shadow: 0 10px 20px 0 rgba(39, 253, 139, 0.33);
 }
