@@ -86,8 +86,10 @@ export class SubmitPage {
 
   submitFormCall(){
     console.log("Posting KYC data to server")
+    // for app
     // var url = 'https://myface-server.herokuapp.com/api/v1/new-kyc-submit';
 
+    // for ionic serve and browser testing
     var url = window.location.origin + '/kyc-submit';
     let postData = new FormData();
 
