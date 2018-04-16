@@ -48,17 +48,20 @@ Tutorial that we follow (Unit testing for ionic is still under development, so p
 
 | ﻿Testpage                             | Test Case Description                             | Test Case (Example)                                                  | Test Result |
 |--------------------------------------|---------------------------------------------------|----------------------------------------------------------------------|-------------|
-| Initial Registration (Register Page) | Uncorrected Email Address Format                  | Email: ohmygod@GG Password: test123456                               | Pass        |
-| Initial Registration (Register Page) | Invalid Email Address                             | Email: hahaha Password: test123456                                   | Fail        |
-| Initial Registration (Register Page) | Password too short                                | Email: guanlun_zhao@mymail.sutd.edu.sg Password: 666                 | Fail        |
-| MyApp                                | Root test: To make sure                           | assert existence of server / page                                    |             |
-| Login                                | Login Username & Password Validation (Login Page) | Email: ohmygod@GG Password: test123456                               | Fail        |
-| Login                                | Invalid Email Address                             | Email: hahaha Password: test123456                                   | Fail        |
-| Login                                | Password too short                                | Email: guanlun_zhao@mymail.sutd.edu.sg Password: 666                 | Fail        |
+| Initial Registration (Register Page) | Valid Email Address & Password                    | Email: qnlzgl@126.com Password: test123456                           | Pass        |
+| Initial Registration (Register Page) | Invalid Email Address Format                      | Email: Email: ohmygod@TTT Password: test123456                       | Fail        |
+| Initial Registration (Register Page) | Password too weak                                 | Email: guanlun_zhao@mymail.sutd.edu.sg Password: 666                 | Fail        |
+| Initial Registration (Register Page) | Account not enabled					           | Email: guanlun_zhao@qq.com Password: test123456 			          | Fail        |
+| Login                                | Username not found                                | Email: hahaha@126.com Password: test123456                           | Fail        |
+| Login                                | Wrong Password                                    | Email: guanlun_zhao@mymail.sutd.edu.sg Password: password123         | Fail        |
 | Login                                | Correct Email Address                             | Email: guanlun_zhao@mymail.sutd.edu.sg Password: This_is_password666 | Pass        |
+| Login                                | User disabled Error                               | Email: guanlun.zhao@mymail.sutd.edu.sg Password: This_is_password666 | Pass        |
+| Login                                | Invalid Email Address Format                      | Email: guanlun_zhao@mymail Password: This_is_password666 | Pass        |
 | E2E                                  | Simulate user's using process (Selenium)          | Whole work flow                                                      | Pass        |
+| MyApp                                | Root test: Assert the page initialize successfully| assert existence of server / page                                    |             |
 
 Languages & Frameworks: Angular, Typescript, Ionic, NodeJS
+Testing Frameworks: Jasmine & Karma
 
 Import Command
 
@@ -66,8 +69,7 @@ Unit Testing: npm run test (Run unit test, jasmine & karma)
 E2E Testing Run IonicTest.java
 P.S. All unit testing has file name pattern “*.spec.ts”, under each page folder, testing case is written in typescript and jasmine syntax.
 
-Hints I find useful
-
+Reminder
 Make sure to serve browser in chrome instead of safari
 ionic serve --browser "google chrome"
 Serve ionic app first before run e2e test (IMPORTANT)
