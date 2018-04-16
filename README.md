@@ -30,4 +30,7 @@ Hints I find useful
 1. Make sure to serve browser in chrome instead of safari 
     1. ionic serve --browser "google chrome"
 2. Serve ionic app first before run e2e test (IMPORTANT)
+<<<<<<< HEAD
+>>>>>>> c80acf1152ff11fdcc821670580d50eebe06c188
+=======
 >>>>>>> c80acf1152ff11fdcc821670580d50eebe06c188
