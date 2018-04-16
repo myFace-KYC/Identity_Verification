@@ -70,8 +70,7 @@ var SIGN_ALGS = {
 	'ecdsa-sha1': '1.2.840.10045.4.1',
 	'ecdsa-sha256': '1.2.840.10045.4.3.2',
 	'ecdsa-sha384': '1.2.840.10045.4.3.3',
-	'ecdsa-sha512': '1.2.840.10045.4.3.4',
-	'ed25519-sha512': '1.3.101.112'
+	'ecdsa-sha512': '1.2.840.10045.4.3.4'
 };
 Object.keys(SIGN_ALGS).forEach(function (k) {
 	SIGN_ALGS[SIGN_ALGS[k]] = k;
@@ -523,8 +522,6 @@ function writeTBSCert(cert, der) {
 
 	der.startSequence();
 	der.writeOID(SIGN_ALGS[sig.algo]);
-	if (sig.algo.match(/^rsa-/))
-		der.writeNull();
 	der.endSequence();
 
 	cert.issuer.toAsn1(der);

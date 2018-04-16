@@ -1,3 +1,30 @@
 page-kyc-selfie {
 
+    .button {
+      
+        height: 50px;
+        border-radius: 13px;
+        font-weight: 300;
+        font-size: 1.1em;
+        background-color: #69A1F7;
+        color: white;
+        background-image: linear-gradient(141deg, #2789FD 0%, #2789FD 100%);
+        // box-shadow: 0 3px 6px 0 rgba(114,213,242,0.56);
+      
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+     
+    }
+
+    
+
+    .image-headers {
+        text-align: center;
+        padding-top: 8%;
+        margin: auto;
+        width: 70%;
+        color: grey;
+        font-weight: 500;
+        font-size: 1.2em;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+      }
 }

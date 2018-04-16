@@ -1,7 +1,7 @@
 export interface kycForm {
-	first_name: string;
-	last_name: string;
+	firstName: string;
+	lastName: string;
 	address: string;
-	nationality: string;
-	phone_number: string;
+	nric: string;
+	phone: string;
 }

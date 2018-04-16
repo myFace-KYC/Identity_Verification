@@ -21,6 +21,8 @@ import { HomePage } from '../pages/home/home';
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 import { KycFormPage } from '../pages/kyc-form/kyc-form';
 import { KycSelfiePage } from '../pages/kyc-selfie/kyc-selfie';
+import { HttpClientModule } from '@angular/common/http';
+import { SubmitPage } from '../pages/submit/submit';
 
 @NgModule({
   declarations: [
@@ -29,11 +31,13 @@ import { KycSelfiePage } from '../pages/kyc-selfie/kyc-selfie';
     RegisterPage,
     HomePage,
     KycFormPage,
-    KycSelfiePage
+    KycSelfiePage,
+    SubmitPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     IonicModule.forRoot(MyApp),
@@ -46,13 +50,15 @@ import { KycSelfiePage } from '../pages/kyc-selfie/kyc-selfie';
     RegisterPage,
     HomePage,
     KycFormPage,
-    KycSelfiePage
+    KycSelfiePage,
+    SubmitPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AngularFireAuth,
     AngularFireDatabase,
+    HttpClientModule,
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseServiceProvider

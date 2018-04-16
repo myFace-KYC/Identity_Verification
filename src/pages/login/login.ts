@@ -20,10 +20,10 @@ import { HomePage } from '../home/home';
 
 export class LoginPage {
 
+
 	user = {} as User;
   auth_result : boolean;
 
-  // Temporarily modify constructor to fit AngularFireAuthMock class in for unit testing, otherwise no choice
   constructor(private afAuth: AngularFireAuth, private toast:ToastController,
     public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -31,11 +31,11 @@ export class LoginPage {
   async login(user:User){
   
     try { 
-      console.log("Loging in");
+      console.log("Loging in")
       const result = await this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password);
       console.log(result);
-      console.log("Login Successful");
-      if (result){
+      console.log("Login Successful")
+      if (result) {
         this.navCtrl.setRoot(HomePage);
         this.auth_result = true;
       }
@@ -45,9 +45,8 @@ export class LoginPage {
     }
     catch(e){
       console.error(e);
-      this.auth_result = false;
       let toast = this.toast.create({
-        message: 'Login Failed! Invalid Email or Password',
+        message: e['message'],
         duration: 3000,
         cssClass: 'error'
       });
@@ -57,6 +56,7 @@ export class LoginPage {
 
   register(){
     this.navCtrl.push(RegisterPage)
-
+    
   }
+
 }

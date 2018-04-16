@@ -6,28 +6,46 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary" >
-    <ion-title>Login</ion-title>
-  </ion-navbar>
+
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
 
-	<ion-item>
-		<ion-label floating>Email Address</ion-label>
-		<ion-input id="username_input" type="text" [(ngModel)]="user.email"></ion-input>
-	</ion-item>
 
-	<ion-item>
-		<ion-label floating>Password</ion-label>
-		<ion-input id="password_input" type="password" [(ngModel)]="user.password"></ion-input>
-	</ion-item>
 
-	<div padding >
-		<button ion-button (click)="login(user)">Login</button>
-		<button ion-button color="light" (click)="register()">Register</button>
-	</div>
+	<ion-card class="Absolute-Center">
+		<img src="assets/imgs/SignIn.jpg"/>
+		<ion-card-content>
+		
+
+		<div class="form-container">
+			<ion-row>
+
+				<ion-item>
+					<ion-input center type="text" placeholder= "Email" [(ngModel)]="user.email"></ion-input>
+				</ion-item>
+
+			</ion-row>
+			<ion-row>
+					<ion-item>
+						<ion-input justify-center type="password" placeholder= "Password" [(ngModel)]="user.password" ></ion-input>
+					</ion-item>
+			</ion-row>
+	 
+		</div>
+			<ion-row>
+				<ion-col>
+					<button ion-button class="login-button" (click)="login(user)">Login</button>
+				</ion-col>
+				<ion-col>
+					<button ion-button class="register-button" color="light" (click)="register()">Register</button>
+				</ion-col>
+			</ion-row>
+			
+		</ion-card-content>
+	</ion-card>
+
 
 </ion-content>

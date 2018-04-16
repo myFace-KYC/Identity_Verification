@@ -1,8 +1,12 @@
 # Identity_Verification
 An Identity Verification App to be used to for KYC purposes 
 
+<<<<<<< HEAD
+=======
 
 ------------ TESTING PLANS ------------
+
+
 We implemented two different kind of testing:
 1. Unit Testing
 2. E2E (End-to-End) Testing
@@ -26,3 +30,4 @@ Hints I find useful
 1. Make sure to serve browser in chrome instead of safari 
     1. ionic serve --browser "google chrome"
 2. Serve ionic app first before run e2e test (IMPORTANT)
+>>>>>>> c80acf1152ff11fdcc821670580d50eebe06c188

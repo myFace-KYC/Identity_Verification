@@ -7,25 +7,47 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Register</ion-title>
+    <ion-title>Registration</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
 
-  <ion-item>
-		<ion-label floating>Email Address</ion-label>
-		<ion-input type="text" [(ngModel)]="user.email"></ion-input>
-	</ion-item>
 
-	<ion-item>
-		<ion-label floating>Password</ion-label>
-		<ion-input type="password" [(ngModel)]="user.password"></ion-input>
-	</ion-item>
 
-	<div padding >
-		<button ion-button (click)='register(user)'>Submit</button>
-	</div>
+		<ion-card class="Absolute-Center">
+			<img src="assets/imgs/Register.jpg"/>
+			<ion-card-content>
+			
+	
+			<div class="form-container">
+				<ion-row>
+	
+					<ion-item>
+						<ion-input center type="text" placeholder= "Email" [(ngModel)]="user.email"></ion-input>
+					</ion-item>
+	
+				</ion-row>
+				<ion-row>
+						<ion-item>
+							<ion-input justify-center type="password" placeholder= "Password" [(ngModel)]="user.password" ></ion-input>
+						</ion-item>
+				</ion-row>
+		 
+			</div>
+				<ion-row>
+					<ion-col>
+						<button ion-button class="register-button" (click)="register(user)">Submit</button>
+					</ion-col>
+				</ion-row>
+				
+			</ion-card-content>
+		</ion-card>
+	
+
+
+
+
 </ion-content>

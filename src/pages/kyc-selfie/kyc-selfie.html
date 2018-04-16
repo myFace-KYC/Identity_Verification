@@ -6,14 +6,55 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar>
     <ion-title>Upload Selfie</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-  <button ion-button (click) ="takePhoto()">Take Photo</button>
+
+		<h1 class="image-headers">Selfie with passport photo</h1>
+
+	<p align="center">
+ 		<img src="{{ selfiephoto }}">
+ 	</p>
+  	<ion-row>
+  		<ion-col col-6>
+			<button ion-button full (click)="takeselfiePhoto()">
+ 				Take Photo
+ 			</button>
+ 		</ion-col>
+ 		<ion-col col-6>
+ 			<button ion-button full (click)="getselfiePhoto()">
+ 				From Gallery
+ 			</button>
+ 		</ion-col>
+ 	</ion-row>
+
+	
+	 <h1 class="image-headers">Passport photo</h1>
+
+	<p align="center">
+ 		<img src="{{ passportphoto }}">
+ 	</p>
+  	<ion-row>
+  		<ion-col col-6>
+			<button ion-button full (click)="takepassportPhoto()">
+ 				Take Photo
+ 			</button>
+ 		</ion-col>
+ 		<ion-col col-6>
+ 			<button ion-button full (click)="getpassportPhoto()">
+ 				From Gallery
+ 			</button>
+ 		</ion-col>
+ 	</ion-row>
+ 	
+
+ 	<button ion-button full (click)="upload()">
+ 		Upload
+	 </button>
+	 
 
 </ion-content>

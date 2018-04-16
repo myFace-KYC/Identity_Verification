@@ -26,7 +26,7 @@
     "@angular/http": "5.0.3",
     "@angular/platform-browser": "5.0.3",
     "@angular/platform-browser-dynamic": "5.0.3",
-    "@ionic-native/camera": "^4.5.3",
+    "@ionic-native/camera": "^4.6.0",
     "@ionic-native/core": "4.4.0",
     "@ionic-native/splash-screen": "4.4.0",
     "@ionic-native/status-bar": "4.4.0",
@@ -39,19 +39,20 @@
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-whitelist": "^1.3.3",
-    "firebase": "4.9.0",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
-    "zone.js": "git://github.com/JiaLiPassion/zone.js#jasmine-dist"
+    "zone.js": "git://github.com/JiaLiPassion/zone.js#jasmine-dist",
+    "cordova-android": "~7.0.0"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.8",
+    "firebase": "^4.9.0",
+    "typescript": "2.4.2",
     "@types/jasmine": "^2.8.6",
     "@types/node": "^9.6.1",
     "angular2-template-loader": "^0.6.2",
-    "firebase": "4.9.0",
     "firebase-mock": "^2.2.0",
     "html-loader": "^0.5.5",
     "ionic-mocks": "^1.3.0",
@@ -68,8 +69,7 @@
     "null-loader": "^0.1.1",
     "protractor": "^5.3.0",
     "ts-loader": "^3.5.0",
-    "ts-node": "^5.0.1",
-    "typescript": "2.4.2"
+    "ts-node": "^5.0.1"
   },
   "description": "An Ionic project",
   "cordova": {

@@ -1,5 +1,87 @@
 page-register {
 
+    ion-row {
+        align-items: center !important;
+        text-align: center !important;
+      }
+ 
+      ion-item {
+          border-radius: 30px !important;
+
+          border-style: solid !important;
+          
+          margin: 6px !important;
+          box-shadow: 0 4px 20px 0 rgba(127,127,127,0.30) !important;
+       
+          margin-right: 20px !important;
+          margin-left: 20px !important;
+          background-color: #f6f6f6;
+          opacity: 0.7;
+          font-size: 0.9em;
+          
+      }
+
+      ion-input{
+          width: 50%;
+          font-size: 0.85em !important;
+    
+      }
+
+      .Absolute-Center {
+        //width: 80%;
+        width: 300px;
+        height: 80%;
+        //overflow: auto;
+        margin: auto;
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+  }
+
+      .background{
+    
+       
+        
+        background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      }
+
+      .form-container{
+          margin-top:17px;
+          margin-bottom:24px;
+          
+      }
+
+      ion-card{
+        border-radius: 15px !important;
+
+        box-shadow: 0 17px 18px 0 rgba(127,127,127,0.30) !important;
+       
+
+      }
+
+    
+ 
+ 
+      .login-button {
+          width: 80%;
+          border-radius: 6px;
+          font-size: 1.1m;
+          background-color: #39acdc;
+          margin-bottom: 10px;
+          height: 50px;
+      }
+
+      .register-button {
+        width: 80%;
+        height: 50px;
+        border-radius: 13px;
+        font-weight: 400;
+        font-size: 1.1em;
+        background-image: linear-gradient(149deg, #A1FEE4 0%, #27DB7B 100%);
+        box-shadow: 0 5px 6px 0 rgba(39,253,139,0.33);
+        color: white;
+        margin-bottom: 10px;
+    }
+
 }
 
 

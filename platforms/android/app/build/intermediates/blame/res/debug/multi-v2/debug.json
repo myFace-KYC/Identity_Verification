@@ -1,0 +1,48 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/dudu/Downloads/MK_1 2/platforms/android/app/build/intermediates/res/merged/debug/values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/dudu/Downloads/MK_1 2/platforms/android/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "4,2,3",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "157,55,98",
+                        "endColumns": "63,42,58",
+                        "endOffsets": "216,93,152"
+                    },
+                    "to": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,119,162",
+                        "endColumns": "63,42,58",
+                        "endOffsets": "114,157,216"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/res/merged/debug/values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "4,2,3",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "157,55,98",
+                        "endColumns": "63,42,58",
+                        "endOffsets": "216,93,152"
+                    },
+                    "to": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,119,162",
+                        "endColumns": "63,42,58",
+                        "endOffsets": "114,157,216"
+                    }
+                }
+            ]
+        }
+    ]
+}
