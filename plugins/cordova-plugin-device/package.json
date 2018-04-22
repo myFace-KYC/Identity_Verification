@@ -1,0 +1,143 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-device@^2.0.1",
+        "scope": null,
+        "escapedName": "cordova-plugin-device",
+        "name": "cordova-plugin-device",
+        "rawSpec": "^2.0.1",
+        "spec": ">=2.0.1 <3.0.0",
+        "type": "range"
+      },
+      "/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1"
+    ]
+  ],
+  "_from": "cordova-plugin-device@>=2.0.1 <3.0.0",
+  "_id": "cordova-plugin-device@2.0.1",
+  "_inCache": true,
+  "_location": "/cordova-plugin-device",
+  "_nodeVersion": "8.2.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-plugin-device-2.0.1.tgz_1514690798090_0.7229661573655903"
+  },
+  "_npmUser": {
+    "name": "macdonst",
+    "email": "simon.macdonald@gmail.com"
+  },
+  "_npmVersion": "4.6.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-device@^2.0.1",
+    "scope": null,
+    "escapedName": "cordova-plugin-device",
+    "name": "cordova-plugin-device",
+    "rawSpec": "^2.0.1",
+    "spec": ">=2.0.1 <3.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-device/-/cordova-plugin-device-2.0.1.tgz",
+  "_shasum": "9b9e2313e682119ff8402f68096a38bcc5013593",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-device@^2.0.1",
+  "_where": "/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1",
+  "author": {
+    "name": "Apache Software Foundation"
+  },
+  "bugs": {
+    "url": "https://issues.apache.org/jira/browse/CB"
+  },
+  "cordova": {
+    "id": "cordova-plugin-device",
+    "platforms": [
+      "android",
+      "ios",
+      "windows",
+      "browser",
+      "osx"
+    ]
+  },
+  "dependencies": {},
+  "description": "Cordova Device Plugin",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-semistandard": "^11.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "9b9e2313e682119ff8402f68096a38bcc5013593",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-device/-/cordova-plugin-device-2.0.1.tgz"
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "3.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "homepage": "https://github.com/apache/cordova-plugin-device#readme",
+  "keywords": [
+    "cordova",
+    "device",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows",
+    "cordova-browser",
+    "cordova-osx"
+  ],
+  "license": "Apache-2.0",
+  "maintainers": [
+    {
+      "name": "macdonst",
+      "email": "simon.macdonald@gmail.com"
+    },
+    {
+      "name": "bowserj",
+      "email": "bowserj@apache.org"
+    },
+    {
+      "name": "purplecabbage",
+      "email": "purplecabbage@gmail.com"
+    },
+    {
+      "name": "filmaj",
+      "email": "maj.fil@gmail.com"
+    },
+    {
+      "name": "shazron",
+      "email": "shazron@gmail.com"
+    },
+    {
+      "name": "csantanapr",
+      "email": "csantana23@gmail.com"
+    },
+    {
+      "name": "stevegill",
+      "email": "stevengill97@gmail.com"
+    }
+  ],
+  "name": "cordova-plugin-device",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apache/cordova-plugin-device.git"
+  },
+  "scripts": {
+    "eslint": "node node_modules/eslint/bin/eslint www && node node_modules/eslint/bin/eslint src && node node_modules/eslint/bin/eslint tests",
+    "test": "npm run eslint"
+  },
+  "types": "./types/index.d.ts",
+  "version": "2.0.1"
+}

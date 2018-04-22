@@ -1,0 +1,100 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-ionic-keyboard@^2.0.5",
+        "scope": null,
+        "escapedName": "cordova-plugin-ionic-keyboard",
+        "name": "cordova-plugin-ionic-keyboard",
+        "rawSpec": "^2.0.5",
+        "spec": ">=2.0.5 <3.0.0",
+        "type": "range"
+      },
+      "/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1"
+    ]
+  ],
+  "_from": "cordova-plugin-ionic-keyboard@>=2.0.5 <3.0.0",
+  "_id": "cordova-plugin-ionic-keyboard@2.0.5",
+  "_inCache": true,
+  "_location": "/cordova-plugin-ionic-keyboard",
+  "_nodeVersion": "8.9.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-plugin-ionic-keyboard-2.0.5.tgz_1513017496250_0.21028506266884506"
+  },
+  "_npmUser": {
+    "name": "mhartington",
+    "email": "mikehartington@gmail.com"
+  },
+  "_npmVersion": "5.5.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-ionic-keyboard@^2.0.5",
+    "scope": null,
+    "escapedName": "cordova-plugin-ionic-keyboard",
+    "name": "cordova-plugin-ionic-keyboard",
+    "rawSpec": "^2.0.5",
+    "spec": ">=2.0.5 <3.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-ionic-keyboard/-/cordova-plugin-ionic-keyboard-2.0.5.tgz",
+  "_shasum": "c7c35ffd8f6a1ef77e27a1eee70ccaa2e94f99e1",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-ionic-keyboard@^2.0.5",
+  "_where": "/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1",
+  "author": {
+    "name": "Apache Software Foundation"
+  },
+  "bugs": {
+    "url": "https://github.com/ionic-team/cordova-plugin-ionic-keyboard/issues"
+  },
+  "dependencies": {},
+  "description": "Ionic Keyboard Plugin",
+  "devDependencies": {
+    "np": "^2.16.0",
+    "sync-cordova-xml": "^0.4.0"
+  },
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-ygwK+U7Vs7OJJYsDrWAxhegHfvuRRpMC3Y8RhQSVLfv4ELrXtkCUjD+UfsDQ3aObpvxGLTvcVrOw5p04dPXy3w==",
+    "shasum": "c7c35ffd8f6a1ef77e27a1eee70ccaa2e94f99e1",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-ionic-keyboard/-/cordova-plugin-ionic-keyboard-2.0.5.tgz"
+  },
+  "gitHead": "0378a5661c54820a5d711e8ed8c1d7054337ef0e",
+  "homepage": "https://github.com/ionic-team/cordova-plugin-ionic-keyboard#readme",
+  "keywords": [
+    "cordova",
+    "keyboard",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "license": "Apache 2.0",
+  "maintainers": [
+    {
+      "name": "mhartington",
+      "email": "mikehartington@gmail.com"
+    },
+    {
+      "name": "manucorporat",
+      "email": "manu.mtza@gmail.com"
+    }
+  ],
+  "name": "cordova-plugin-ionic-keyboard",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionic-team/cordova-plugin-ionic-keyboard.git"
+  },
+  "scripts": {
+    "deploy": "np --yolo",
+    "sync_plugin_xml": "sync-cordova-xml package.json plugin.xml --output=plugin.xml",
+    "version": "npm run sync_plugin_xml && git add plugin.xml"
+  },
+  "version": "2.0.5"
+}
