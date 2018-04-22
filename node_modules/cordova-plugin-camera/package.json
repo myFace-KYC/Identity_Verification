@@ -1,0 +1,167 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-camera@4.0.2",
+        "scope": null,
+        "escapedName": "cordova-plugin-camera",
+        "name": "cordova-plugin-camera",
+        "rawSpec": "4.0.2",
+        "spec": "4.0.2",
+        "type": "version"
+      },
+      "/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1"
+    ]
+  ],
+  "_from": "cordova-plugin-camera@4.0.2",
+  "_id": "cordova-plugin-camera@4.0.2",
+  "_inCache": true,
+  "_location": "/cordova-plugin-camera",
+  "_nodeVersion": "6.10.2",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-plugin-camera-4.0.2.tgz_1517268292950_0.5076568976510316"
+  },
+  "_npmUser": {
+    "name": "surajpindoria",
+    "email": "suraj.pindoria@yahoo.com"
+  },
+  "_npmVersion": "4.6.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-camera@4.0.2",
+    "scope": null,
+    "escapedName": "cordova-plugin-camera",
+    "name": "cordova-plugin-camera",
+    "rawSpec": "4.0.2",
+    "spec": "4.0.2",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-camera/-/cordova-plugin-camera-4.0.2.tgz",
+  "_shasum": "309410927ef40adc6bebd4b0e91df2c8c644f38a",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-camera@4.0.2",
+  "_where": "/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1",
+  "author": {
+    "name": "Apache Software Foundation"
+  },
+  "bugs": {
+    "url": "https://issues.apache.org/jira/browse/CB"
+  },
+  "cordova": {
+    "id": "cordova-plugin-camera",
+    "platforms": [
+      "android",
+      "ios",
+      "browser",
+      "windows",
+      "osx"
+    ]
+  },
+  "dependencies": {},
+  "description": "Cordova Camera Plugin",
+  "devDependencies": {
+    "dmd-plugin-cordova-plugin": "^0.1.0",
+    "eslint": "^4.3.0",
+    "eslint-config-semistandard": "^11.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "husky": "^0.10.1",
+    "jsdoc-to-markdown": "^1.2.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "309410927ef40adc6bebd4b0e91df2c8c644f38a",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-camera/-/cordova-plugin-camera-4.0.2.tgz"
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "3.0.0": {
+        "cordova-android": ">=6.3.0"
+      },
+      "5.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "homepage": "https://github.com/apache/cordova-plugin-camera#readme",
+  "keywords": [
+    "cordova",
+    "camera",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-browser",
+    "cordova-windows",
+    "cordova-osx"
+  ],
+  "license": "Apache-2.0",
+  "maintainers": [
+    {
+      "name": "jcesarmobile",
+      "email": "jcesarmobile@gmail.com"
+    },
+    {
+      "name": "surajpindoria",
+      "email": "suraj.pindoria@yahoo.com"
+    },
+    {
+      "name": "macdonst",
+      "email": "simon.macdonald@gmail.com"
+    },
+    {
+      "name": "cordovaowner",
+      "email": "stevengill.97@gmail.com"
+    },
+    {
+      "name": "anis",
+      "email": "anis.kadri@gmail.com"
+    },
+    {
+      "name": "bowserj",
+      "email": "bowserj@apache.org"
+    },
+    {
+      "name": "purplecabbage",
+      "email": "purplecabbage@gmail.com"
+    },
+    {
+      "name": "filmaj",
+      "email": "maj.fil@gmail.com"
+    },
+    {
+      "name": "shazron",
+      "email": "shazron@gmail.com"
+    },
+    {
+      "name": "csantanapr",
+      "email": "csantana23@gmail.com"
+    },
+    {
+      "name": "stevegill",
+      "email": "stevengill97@gmail.com"
+    }
+  ],
+  "name": "cordova-plugin-camera",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apache/cordova-plugin-camera.git"
+  },
+  "scripts": {
+    "eslint": "node node_modules/eslint/bin/eslint www && node node_modules/eslint/bin/eslint src && node node_modules/eslint/bin/eslint tests",
+    "gen-docs": "jsdoc2md --template \"jsdoc2md/TEMPLATE.md\" \"www/**/*.js\" --plugin \"dmd-plugin-cordova-plugin\" > README.md",
+    "precommit": "npm run gen-docs && git add README.md",
+    "test": "npm run eslint"
+  },
+  "types": "./types/index.d.ts",
+  "version": "4.0.2"
+}
