@@ -87,10 +87,10 @@ export class SubmitPage {
   submitFormCall(){
     console.log("Posting KYC data to server")
     // for app
-    // var url = 'https://myface-server.herokuapp.com/api/v1/new-kyc-submit';
+    var url = 'https://myface-server.herokuapp.com/api/v1/new-kyc-submit';
 
     // for ionic serve and browser testing
-    var url = window.location.origin + '/kyc-submit';
+    // var url = window.location.origin + '/kyc-submit';
     let postData = new FormData();
 
     console.log("uid",this.userId)
@@ -109,7 +109,7 @@ export class SubmitPage {
     postData.append('passport_url',this.passport_url)
 
     postData.append('firstName',this.kyc_form.firstName)
-    postData.append('lastNname',this.kyc_form.lastName)
+    postData.append('lastName',this.kyc_form.lastName)
     postData.append('nric',this.kyc_form.nric)
     postData.append('phone',this.kyc_form.phone)
     postData.append('address',this.kyc_form.address)

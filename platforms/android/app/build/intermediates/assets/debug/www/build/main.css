@@ -25678,10 +25678,325 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
-.error > div {
-  background-color: #E84B3A !important;
+page-home ion-row {
+  -webkit-box-align: center !important;
+  -webkit-align-items: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+page-home ion-item {
+  border-radius: 30px !important;
+  border-style: solid !important;
+  margin: 6px !important;
+  -webkit-box-shadow: 0 4px 20px 0 rgba(127, 127, 127, 0.3) !important;
+  box-shadow: 0 4px 20px 0 rgba(127, 127, 127, 0.3) !important;
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+  background-color: #f6f6f6;
+  opacity: 0.7;
+  font-size: 0.9em;
+}
+
+page-home ion-input {
+  width: 50%;
+  font-size: 0.85em !important;
+}
+
+page-home .Absolute-Center {
+  width: 80%;
+  height: 54%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+page-home .background {
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+page-home .form-container {
+  margin-top: 17px;
+  margin-bottom: 24px;
+}
+
+page-home ion-card {
+  border-radius: 15px !important;
+  -webkit-box-shadow: 0 17px 18px 0 rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 17px 18px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+page-home .title-home {
+  text-align: center;
+  padding-top: 13%;
+  font-size: 1.9em;
+  margin: auto;
+  width: 70%;
+  color: grey;
+  font-weight: 200;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+page-home .proceed-button {
+  width: 80%;
+  height: 45px;
+  border-radius: 13px;
+  font-weight: 400;
+  font-size: 1.1em;
+  background-image: linear-gradient(141deg, #28CFFF 0%, #2789FD 100%);
+  -webkit-box-shadow: 0 1px 6px 0 rgba(114, 213, 242, 0.56);
+  box-shadow: 0 1px 6px 0 rgba(114, 213, 242, 0.56);
+  color: white;
+  margin-bottom: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+page-kyc-form .form-header {
+  text-align: center;
+  padding-top: 8%;
+  margin: auto;
+  width: 70%;
+  font-size: 1.6em;
+  color: black;
+  font-weight: 200;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+page-kyc-form .kyc-form-container {
+  width: 80%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 200;
+}
+
+page-kyc-form .button {
+  border-radius: 13px;
+  width: 80%;
+  height: 50px;
+  margin: auto;
+  background-image: linear-gradient(141deg, #28CFFF 0%, #2789FD 100%);
+  -webkit-box-shadow: 0 3px 10px 0 rgba(114, 213, 242, 0.56);
+  box-shadow: 0 3px 10px 0 rgba(114, 213, 242, 0.56);
+}
+
+page-kyc-selfie .button {
+  height: 50px;
+  border-radius: 13px;
+  font-weight: 300;
+  font-size: 1.1em;
+  background-color: #69A1F7;
+  color: white;
+  background-image: linear-gradient(141deg, #2789FD 0%, #2789FD 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+page-kyc-selfie .image-headers {
+  text-align: center;
+  padding-top: 8%;
+  margin: auto;
+  width: 70%;
+  color: grey;
+  font-weight: 500;
+  font-size: 1.2em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+page-login ion-row {
+  -webkit-box-align: center !important;
+  -webkit-align-items: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+page-login ion-item {
+  border-radius: 30px !important;
+  border-style: solid !important;
+  margin: 6px !important;
+  -webkit-box-shadow: 0 4px 20px 0 rgba(127, 127, 127, 0.3) !important;
+  box-shadow: 0 4px 20px 0 rgba(127, 127, 127, 0.3) !important;
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+  background-color: #f6f6f6;
+  opacity: 0.7;
+  font-size: 0.9em;
+}
+
+page-login ion-input {
+  width: 50%;
+  font-size: 0.85em !important;
+}
+
+page-login .Absolute-Center {
+  width: 80%;
+  height: 71%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+page-login .background {
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+page-login .form-container {
+  margin-top: 17px;
+  margin-bottom: 24px;
+}
+
+page-login ion-card {
+  border-radius: 15px !important;
+  -webkit-box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+page-login .login-button {
+  width: 80%;
+  border-radius: 13px;
+  font-size: 1em;
+  background-color: #39acdc;
+  margin-bottom: 10px;
+  height: 45px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 200;
+  /* Rectangle 4 Copy 2: */
+  /* Rectangle 4 Copy: */
+  background-image: linear-gradient(141deg, #28CFFF 0%, #2789FD 100%);
+  -webkit-box-shadow: 0 5px 6px 0 rgba(114, 213, 242, 0.56);
+  box-shadow: 0 5px 6px 0 rgba(114, 213, 242, 0.56);
+}
+
+page-login .register-button {
+  width: 80%;
+  height: 45px;
+  border-radius: 13px;
+  font-size: 1em;
+  background-color: #4CCC2D;
+  color: white;
+  margin-bottom: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 200;
+  /* Rectangle 4 Copy: */
+  /* Rectangle 4 Copy 2: */
+  /* Rectangle 4 Copy 2: */
+  /* Rectangle 4 Copy 2: */
+  background-image: linear-gradient(149deg, #A1FEE4 0%, #27DB7B 100%);
+  -webkit-box-shadow: 0 5px 6px 0 rgba(39, 253, 139, 0.33);
+  box-shadow: 0 5px 6px 0 rgba(39, 253, 139, 0.33);
 }
 
 .error > div {
   background-color: #E84B3A !important;
+}
+
+page-register ion-row {
+  -webkit-box-align: center !important;
+  -webkit-align-items: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+page-register ion-item {
+  border-radius: 30px !important;
+  border-style: solid !important;
+  margin: 6px !important;
+  -webkit-box-shadow: 0 4px 20px 0 rgba(127, 127, 127, 0.3) !important;
+  box-shadow: 0 4px 20px 0 rgba(127, 127, 127, 0.3) !important;
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+  background-color: #f6f6f6;
+  opacity: 0.7;
+  font-size: 0.9em;
+}
+
+page-register ion-input {
+  width: 50%;
+  font-size: 0.85em !important;
+}
+
+page-register .Absolute-Center {
+  width: 80%;
+  height: 78%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+page-register .background {
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+page-register .form-container {
+  margin-top: 17px;
+  margin-bottom: 24px;
+}
+
+page-register ion-card {
+  border-radius: 15px !important;
+  -webkit-box-shadow: 0 17px 18px 0 rgba(127, 127, 127, 0.3) !important;
+  box-shadow: 0 17px 18px 0 rgba(127, 127, 127, 0.3) !important;
+}
+
+page-register .login-button {
+  width: 80%;
+  border-radius: 6px;
+  font-size: 1.1m;
+  background-color: #39acdc;
+  margin-bottom: 10px;
+  height: 50px;
+}
+
+page-register .register-button {
+  width: 80%;
+  height: 50px;
+  border-radius: 13px;
+  font-weight: 400;
+  font-size: 1.1em;
+  background-image: linear-gradient(149deg, #A1FEE4 0%, #27DB7B 100%);
+  -webkit-box-shadow: 0 5px 6px 0 rgba(39, 253, 139, 0.33);
+  box-shadow: 0 5px 6px 0 rgba(39, 253, 139, 0.33);
+  color: white;
+  margin-bottom: 10px;
+}
+
+.error > div {
+  background-color: #E84B3A !important;
+}
+
+page-submit img {
+  max-width: 70% !important;
+  margin-top: 25%;
+  margin-bottom: 10%;
+}
+
+page-submit .submit_button {
+  width: 85%;
+  height: 65px;
+  border-radius: 13px;
+  font-size: 1em;
+  background-color: #4CCC2D;
+  color: white;
+  margin-bottom: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 600;
+  /* Rectangle 4 Copy: */
+  /* Rectangle 4 Copy 2: */
+  /* Rectangle 4 Copy 2: */
+  /* Rectangle 4 Copy 2: */
+  background-image: linear-gradient(149deg, #A1FEE4 0%, #27DB7B 100%);
+  -webkit-box-shadow: 0 10px 20px 0 rgba(39, 253, 139, 0.33);
+  box-shadow: 0 10px 20px 0 rgba(39, 253, 139, 0.33);
 }

@@ -25706,7 +25706,7 @@ page-home ion-input {
 
 page-home .Absolute-Center {
   width: 80%;
-  height: 61%;
+  height: 54%;
   margin: auto;
   position: absolute;
   top: 0;
@@ -25732,8 +25732,8 @@ page-home ion-card {
 
 page-home .title-home {
   text-align: center;
-  padding-top: 8%;
-  font-size: 1.3em;
+  padding-top: 13%;
+  font-size: 1.9em;
   margin: auto;
   width: 70%;
   color: grey;
@@ -25835,7 +25835,7 @@ page-login ion-input {
 
 page-login .Absolute-Center {
   width: 80%;
-  height: 80%;
+  height: 71%;
   margin: auto;
   position: absolute;
   top: 0;
@@ -25925,8 +25925,8 @@ page-register ion-input {
 }
 
 page-register .Absolute-Center {
-  width: 80%;
-  height: 80%;
+  width: 400px;
+  height: 78%;
   margin: auto;
   position: absolute;
   top: 0;
