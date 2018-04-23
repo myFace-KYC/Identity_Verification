@@ -23,6 +23,9 @@ import { KycFormPage } from '../pages/kyc-form/kyc-form';
 import { KycSelfiePage } from '../pages/kyc-selfie/kyc-selfie';
 import { HttpClientModule } from '@angular/common/http';
 import { SubmitPage } from '../pages/submit/submit';
+import { LockService } from '../services/lock.service';
+import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
+import { AuthPage } from '../pages/auth/auth';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import { SubmitPage } from '../pages/submit/submit';
     HomePage,
     KycFormPage,
     KycSelfiePage,
+    AuthPage,
     SubmitPage
   ],
   imports: [
@@ -51,6 +55,7 @@ import { SubmitPage } from '../pages/submit/submit';
     HomePage,
     KycFormPage,
     KycSelfiePage,
+    AuthPage,
     SubmitPage
   ],
   providers: [
@@ -59,6 +64,8 @@ import { SubmitPage } from '../pages/submit/submit';
     AngularFireAuth,
     AngularFireDatabase,
     HttpClientModule,
+    AndroidFingerprintAuth,
+    LockService,
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseServiceProvider

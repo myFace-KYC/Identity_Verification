@@ -14,23 +14,26 @@ import { KycFormPage } from '../kyc-form/kyc-form';
 export class HomePage {
 
   // variables 
-  
   public userStatus = "false";
   public kyc_status : string;
   public overall_status = "email_unconfirmed";
+
   itemRef: AngularFireObject<any>;
   item: Observable<any>;
   userId : string;
 
   // constructor
-  constructor(private afAuth: AngularFireAuth, private toast:ToastController,
-    public navCtrl: NavController, private fbs:FirebaseServiceProvider,public afd: AngularFireDatabase) {
+  constructor(private afAuth: AngularFireAuth, 
+    private toast:ToastController,
+    public navCtrl: NavController,
+    private fbs:FirebaseServiceProvider,
+    public afd: AngularFireDatabase) {
 
   } 
 
 
- // Check verification Status
-  checkStatus2(){
+ // Check email verification status from database
+  checkStatus(){
     console.log("Checking Status");
     this.itemRef = this.afd.object('/users/'+this.userId+'/email_confirmed');
     this.itemRef.snapshotChanges().subscribe(action => {
@@ -42,7 +45,7 @@ export class HomePage {
     });
   }
 
-
+  // Check KYC application status from database 
   checkKYCStatus(){
     console.log("Checking KYC Status");
     this.itemRef = this.afd.object('/users/'+this.userId+'/kyc_status');
@@ -54,7 +57,7 @@ export class HomePage {
       console.log(status);
     });
   }
-
+  
   setOverallStatus(){
     if (this.userStatus == "false"){
       this.overall_status =  "email_unconfirmed";
@@ -68,9 +71,12 @@ export class HomePage {
       } 
       else if(this.kyc_status=="REJECTED"){
         this.overall_status =  "rejected";
-
-      }else if(this.kyc_status=="PENDING"){
+      }
+      else if(this.kyc_status=="PENDING"){
         this.overall_status =  "pending";
+      }
+      else {
+        this.overall_status =  "rejected";
       }
     }
   }
@@ -84,7 +90,7 @@ export class HomePage {
       console.log("autherising");
       if (data.email && data.uid){
         this.userId = data.uid;
-        this.checkStatus2();
+        this.checkStatus();
         this.checkKYCStatus();
         console.log(this.userId);
         

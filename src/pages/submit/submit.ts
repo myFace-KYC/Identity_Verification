@@ -41,8 +41,6 @@ export class SubmitPage {
 
   ionViewWillLoad() {
     console.log('ionViewDidLoad SubmitPage');
-    this.getSelfieUrl();
-    this.getPassportUrl();
   }
 
   getSelfieUrl(){
@@ -50,10 +48,8 @@ export class SubmitPage {
     var starsRef = storageRef.child('selfie/'+ this.userId);
     // Get the download URL
     starsRef.getDownloadURL().then((result) => {
-
     console.log("Selfie",result);
     this.selfie_url = result;
-   
     }).catch(function(error) {
       console.log(error)
     });
@@ -75,6 +71,7 @@ export class SubmitPage {
   }
 
   presentLoadingCrescent() {
+    
     let loading = this.loadingCtrl.create({
       spinner: 'crescent',
       content: 'Your applicaiton is being evaluated and processed on our servers',
@@ -82,9 +79,32 @@ export class SubmitPage {
     });
 
     loading.present();
+    this.postFormData()
   }
 
   submitFormCall(){
+    this.getSelfieUrl();
+    this.getPassportUrl();
+    let alert = this.alertCtrl.create({
+
+      title: 'Upload Success!',
+      subTitle: 'Your KYC Application Is Being Processed',
+      buttons: [
+        {
+          text: 'Return Home',
+          handler: data => {
+            // Change this to return home 
+            this.navCtrl.setRoot(HomePage)
+            this.presentLoadingCrescent()
+          }
+        }
+      ]
+    });
+    alert.present();
+
+}
+
+  postFormData(){
     console.log("Posting KYC data to server")
     // for app
     var url = 'https://myface-server.herokuapp.com/api/v1/new-kyc-submit';
@@ -92,17 +112,6 @@ export class SubmitPage {
     // for ionic serve and browser testing
     // var url = window.location.origin + '/kyc-submit';
     let postData = new FormData();
-
-    console.log("uid",this.userId)
-    console.log("Selfie",this.selfie_url)
-    console.log("Passport",this.passport_url)
-
-    if (this.selfie_url == undefined)
-    {
-      this.getSelfieUrl();
-      this.getPassportUrl();
-      this.presentLoadingCrescent()
-    }
 
     postData.append('uid' , this.userId)
     postData.append('selfie_url',this.selfie_url)
@@ -113,46 +122,12 @@ export class SubmitPage {
     postData.append('nric',this.kyc_form.nric)
     postData.append('phone',this.kyc_form.phone)
     postData.append('address',this.kyc_form.address)
-    // postData.append('last-name',form_data.last_name)
-    // postData.append('address',form_data.address)
-    // postData.append('phone',form_data.phone)
-    console.log(postData);
+
+    // Post Data
     this.data = this.http.put(url,postData);
-    let alert = this.alertCtrl.create({
-      title: 'Upload Success!',
-      subTitle: 'Your KYC Application Is Being Processed',
-      buttons: [
-        {
-          text: 'Return Home',
-          handler: data => {
-            // Change this to return home 
-            this.navCtrl.setRoot(HomePage)
-          }
-        }
-      ]
-    });
-    alert.present();
     this.data.subscribe(data => {
       console.log(data);
-
-      // let alert = this.alertCtrl.create({
-      //   title: 'Upload Success!',
-      //   subTitle: 'Your KYC Application Is Being Processed',
-      //   buttons: [
-      //     {
-      //       text: 'Return Home',
-      //       handler: data => {
-      //         // Change this to return home 
-      //         this.navCtrl.push(HomePage)
-      //       }
-      //     }
-      //   ]
-      // });
-      // alert.present();
-
-      
     });
-
   }
 
 }

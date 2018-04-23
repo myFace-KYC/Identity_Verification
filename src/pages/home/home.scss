@@ -6,12 +6,9 @@ page-home {
  
       ion-item {
           border-radius: 30px !important;
-
           border-style: solid !important;
-          
           margin: 6px !important;
           box-shadow: 0 4px 20px 0 rgba(127,127,127,0.30) !important;
-       
           margin-right: 20px !important;
           margin-left: 20px !important;
           background-color: #f6f6f6;
@@ -28,18 +25,14 @@ page-home {
 
       .Absolute-Center {
         width: 80%;
-        height: 51%;
-        // overflow: hidden;
+        height: 60%;
         margin: auto;
-        // margin-bottom: 30px;
         position: absolute;
         top: 0; left: 0; bottom: 0; right: 0;
   }
 
       .background{
-    
         background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      
       }
 
       .form-container{
@@ -50,7 +43,6 @@ page-home {
 
       ion-card{
         border-radius: 15px !important;
-
         box-shadow: 0 17px 18px 0 rgba(0,0,0,0.30) !important;
        
 
@@ -58,8 +50,8 @@ page-home {
 
       .title-home {
         text-align: center;
-        padding-top: 13%;
-        font-size: 1.9em;
+        padding-top: 8%;
+        font-size: 1.3em;
         margin: auto;
         width: 70%;
         color: grey;

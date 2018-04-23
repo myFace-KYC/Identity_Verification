@@ -3,53 +3,39 @@
 
     <item
         is-multidex="false"
-        jar="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/transforms/desugar/release/3.jar"
+        jar="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1_fingerprint /platforms/android/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
         optimize="true"
         revision="26.0.2"
-        sha1="990807fa0204024ac9d9214a94af966a45483afe">
-        <dex dex="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/transforms/preDex/release/3.jar" />
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1_fingerprint /platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.1.1_4b6148ad388da4bfee75ca933a0e82da5ae7dfb4.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/transforms/desugar/release/2.jar"
+        jar="/Users/Skara/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.1/support-annotations-24.1.1.jar"
         jumboMode="false"
-        min-sdk-version="16"
         optimize="true"
         revision="26.0.2"
-        sha1="d4b7ba177ae64e26c19e00a0a01a5b189945058b">
-        <dex dex="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/transforms/preDex/release/2.jar" />
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1_fingerprint /platforms/android/build/intermediates/pre-dexed/debug/support-annotations-24.1.1_73e57b981d48f3e9ebd82d2b22c5a3d302947d0c.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/transforms/desugar/release/0.jar"
+        jar="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1_fingerprint /platforms/android/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/jars/libs/internal_impl-24.1.1.jar"
         jumboMode="false"
-        min-sdk-version="16"
         optimize="true"
         revision="26.0.2"
-        sha1="bead58dba1ca2f4010f0baa0dacd6552dd50300e">
-        <dex dex="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/transforms/preDex/release/1.jar" />
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1_fingerprint /platforms/android/build/intermediates/pre-dexed/debug/internal_impl-24.1.1_cce8f991c736a0adcb60bfe60d662fcfc06a2550.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/processing-tools/runtime-deps/release/desugar_try_with_resources.jar"
+        jar="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1_fingerprint /platforms/android/build/intermediates/exploded-aar/org.apache.cordova/CordovaLib/6.3.0/debug/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
         optimize="true"
         revision="26.0.2"
-        sha1="db243bf9323563b72ae2d75666dee74928cbf810">
-        <dex dex="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/transforms/preDex/release/5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/transforms/desugar/release/4.jar"
-        jumboMode="false"
-        min-sdk-version="16"
-        optimize="true"
-        revision="26.0.2"
-        sha1="6785164694a22294a2f9fb0ff5ddad0e224c7ba0">
-        <dex dex="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1/platforms/android/app/build/intermediates/transforms/preDex/release/4.jar" />
+        sha1="df1a7a6af20c4eca090c1f535b77951ef6025bfb">
+        <dex dex="/Users/Skara/Documents/Skara/Academics/ISTD/Term 5/ESC/Ionic Project/MK_1_fingerprint /platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-6.3.0-debug_61790ad34fd5eec4b9a409fff54461b68b22d4f7.jar" />
     </item>
 
 </items>

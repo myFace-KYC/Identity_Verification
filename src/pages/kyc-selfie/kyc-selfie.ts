@@ -122,13 +122,12 @@ export class KycSelfiePage {
   }
 
   upload(){
-    // const selfiepictures = storage().ref('selfie/'+this.userId);
-    // selfiepictures.putString(this.selfiephoto,'data_url');
-    // const passportpictures = storage().ref('passport/'+this.userId);
-    // passportpictures.putString(this.passportphoto,'data_url');    
-    // console.log("The user ID being passed:  ",this.userId)
+    const selfiepictures = storage().ref('selfie/'+this.userId);
+    selfiepictures.putString(this.selfiephoto,'data_url');
+    const passportpictures = storage().ref('passport/'+this.userId);
+    passportpictures.putString(this.passportphoto,'data_url');    
+    console.log("The user ID being passed:  ",this.userId)
     this.navCtrl.push(SubmitPage,{ param1 : this.kyc_form, param2: this.userId})
-    // this.getSelfieUrl()
   }
 
   nextPage(){
@@ -141,8 +140,6 @@ export class KycSelfiePage {
     var starsRef = storageRef.child('selfie/'+ 'userid');
     // Get the download URL
     starsRef.getDownloadURL().then((result) => {
-      // `url` is the download URL for 'images/stars.jpg'
-    // this.selfie_url = url;
     console.log("Selfie",result);
     this.selfie_url = result;
     console.log()

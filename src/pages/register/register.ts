@@ -81,14 +81,6 @@ export class RegisterPage {
         ]
       });
       alert.present();
-
-
-      // let toast = this.toast.create({
-      //   message: 'Successfully Registered! Please check your email for verification link',
-      //   duration: 3000,
-        
-      // });
-      // toast.present();
     }
     catch (e){
       console.error(e);
