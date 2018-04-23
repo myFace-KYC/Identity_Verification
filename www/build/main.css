@@ -25706,7 +25706,7 @@ page-home ion-input {
 
 page-home .Absolute-Center {
   width: 80%;
-  height: 54%;
+  height: 51%;
   margin: auto;
   position: absolute;
   top: 0;
@@ -25834,8 +25834,8 @@ page-login ion-input {
 }
 
 page-login .Absolute-Center {
-  width: 80%;
-  height: 71%;
+  width: 75%;
+  height: 65%;
   margin: auto;
   position: absolute;
   top: 0;
@@ -25925,8 +25925,8 @@ page-register ion-input {
 }
 
 page-register .Absolute-Center {
-  width: 400px;
-  height: 78%;
+  width: 75%;
+  height: 70%;
   margin: auto;
   position: absolute;
   top: 0;

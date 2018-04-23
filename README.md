@@ -1,6 +1,9 @@
 # Identity Verification App
 Ionic app for cross-platform identity verification and KYC.
 
+![alt text](Artboard.jpg "Application UI")
+
+
 ## Getting Started
 Ionic is a cross-platform framework, and as such can be deployed on the web as well natively on devices.
 
